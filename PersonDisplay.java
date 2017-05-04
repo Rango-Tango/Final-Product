@@ -1,3 +1,4 @@
+//needs migLayout fix
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;

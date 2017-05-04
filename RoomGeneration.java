@@ -3,7 +3,7 @@
 //freebie/meanie number tells program which character to take information for(information can be stored in text file or in main program)
 public class RoomGeneration 
 {
-	public int[][] pickRooms()
+	public static int[][] pickRooms()
 	{
 		int[][] rooms = new int[3][2];//(fisrt dimension is room number, second dimension is 0 for room design, or 1 for freebie/meanie generation)
 		int num=0;

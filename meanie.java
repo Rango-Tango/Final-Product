@@ -1,4 +1,4 @@
-
+//separate class
 public abstract class meanie {
 
 	public meanie(String [][]location)

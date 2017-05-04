@@ -4,15 +4,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class RoomConstructs extends JPanel {
+	int j=1;
 	   public static void main(String[] a) {
 	      JFrame f = new JFrame();
 	      f.setSize(500, 500);
 	      f.add(new RoomConstructs());
 	      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	      f.setVisible(true);
-	      
 	   }
-	   public  void paint(Graphics g,int j) {
+	   public  void paint(Graphics g) {
 		   if(j==1){
 			   LockedMiddleRoom(g);
 		   }
