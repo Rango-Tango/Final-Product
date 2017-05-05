@@ -51,7 +51,7 @@ public class PlayerMovement
 				{
 					if(MovementspaceObject.getY()>0)
 					{
-						MovementspaceObject.setY(MovementspaceObject().getY()-1);
+						MovementspaceObject.setY((MovementspaceObject.getY())-1);
 					}
 				}
 				else if(e.getKeyCode()==32)//space bar pressed

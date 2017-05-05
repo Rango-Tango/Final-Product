@@ -26,7 +26,7 @@ public abstract class meanie {
 		XofM=X;
 	}
 	
-	public void setXM(int Y)
+	public void setYM(int Y)
 	{
 		YofM=Y;
 	}
@@ -55,7 +55,7 @@ public abstract class meanie {
 	
 	//public String[][] getLocationM ()
 	//{
-		return locationM;
+		//return locationM;
 	//}//returning location of meanie
 	
 	//public void setLocationM (int xM, int yM)

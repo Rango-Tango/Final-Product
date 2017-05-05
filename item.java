@@ -34,7 +34,7 @@ public void zKeyIsPressed()//get the item the player got, the health of player,
 {
 	if (NameOne.equals("medkit"))//give player full health back
 	{
-		MovmentspaceObject.setHealth(6); 
+		MovementspaceObject.setHealth(6); 
 		
 	}
 	else if(NameOne.equals("running shoes"))
@@ -43,28 +43,28 @@ public void zKeyIsPressed()//get the item the player got, the health of player,
 	}
 	else if (NameOne.equals("steriods"))
 	{
-		MovmentspaceObject.healthUp(2);//make the change of health
+		MovementspaceObject.healthUp(2);//make the change of health
 		//check to make sure health max is 6 (3 hearts)
-		int u=MovmentspaceObject.getHealth();
+		int u=MovementspaceObject.getHealth();
 		if (u<=6)//if the health is a normal 6 max
 		{
 		}
 		else if (u>6)
 		{//if the health is 5 or 6 before the item, their health will go to 7 or 8. Thats not ok. so i just set to he max (6)
-			MovmentSpaceObject.setHealth(6);
+			MovementspaceObject.setHealth(6);
 		}
 	}
 	else if (NameOne.equals("determination"))
 	{
-		int u=Movementspace.getHealth();
+		int u=MovementspaceObject.getHealth();
 		if (u<=3)//if the health is a normal 6 max
 		{
 			u=(u*2);//double health
-			Movmentspace.setHealth(u);
+			MovementspaceObject.setHealth(u);
 		}
 		else if (u>3)
 		{//if the health is 5 or 6 before the item, their health will go to 7 or 8. Thats not ok. so i just set to he max (6)
-			MovmentSpaceObject.setHealth(6);//doubling health from 3 will amx out, therefore im just settting it to the max
+			MovementspaceObject.setHealth(6);//doubling health from 3 will max out, therefore im just settting it to the max
 		}
 	}
 	else if (NameOne.equals("shank"))
@@ -76,14 +76,5 @@ public void zKeyIsPressed()//get the item the player got, the health of player,
 		//does nothing 
 	}
 }
-	/*
-	 * Heal: medkit
-Charge: running shoes
-Health +2: steroids
-Double health: Determination
-Improve damage: shank
-Nothing: Nothing
-	 */
-	
 	
 }
