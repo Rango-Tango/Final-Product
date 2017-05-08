@@ -18,7 +18,7 @@ public class movement extends JPanel implements ActionListener, KeyListener {
 	double x = 0, y = 0, velx= 0, vely = 0 ; // declaring variables
 	public movement() {
 		t.start();//why is timer required?
-		//addKeyListener(this);
+		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
 	}

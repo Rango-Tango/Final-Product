@@ -7,8 +7,6 @@ public class PlayerMovement
 {
 	public static void main (String[] args)
 	{
-		
-		
 		//code to copy starts here
 		KeyListener listener = new KeyListener()
 		{
@@ -35,10 +33,10 @@ public class PlayerMovement
 				{
 					//attack (space bar)
 				}
-				else
-				{
+				
+				
 					System.out.println(e.getKeyCode());
-				}
+				
 			}
 			@Override
 			public void keyReleased(KeyEvent e)
@@ -52,8 +50,9 @@ public class PlayerMovement
 		JFrame frame = new JFrame();
 		frame.setVisible(true);
 		frame.addKeyListener(listener);
+		frame.setFocusable(true);
+		frame.setFocusTraversalKeysEnabled(false);
 		//code to copy ends here
-		
 		
 	}
 }

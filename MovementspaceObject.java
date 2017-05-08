@@ -1,56 +1,47 @@
 
-public class MovementspaceObject {
-//public void MovementspaceObject(){
-//}
-	static int x,y,player;
-	static int health=6;//set health to an automatic 6 (3 hearts)
-	static String wep;//current weapon store
+public class MovementspaceObject 
+{
+	public void MovementspaceObject()
+	{
+	}
+	private int x,y, health;
+	private String item;
+	public void setItem(String item)
+	{
+		this.item = item;
+	}
+	public String getItem()
+	{
+		return item;
+	}
+	public void setX(int x){
+		this.x = x;
+	}
+	public void setY(int y){
+		this.y=y;
+	}
+	public void setHealth(int health){
+	this.health = health;
+	}
 	
-	public static void setX(int here){
-		x=here;
-	}
-	public static void setY(int here){
-		y=here;
-	}
-	public static void setHealth(int here){
-	health=here;
-	}
-	
-	public static void setPlayer(int here){
-	player=here;
-	}
-	public static int getX(){
+	public int getX(){
 		return x;
 	}
-	public static int getY(){
+	public int getY(){
 		return y;
 	}
-	public static int getHealth(){
+	public int getHealth(){
 	return health;	
 	}
-	public static int getPlayer(){
-		return player;
-	}
 	
-
-public static String getWeapon()//get the players current space trigered weapon
+public void healthDown(int hitType)//make different names for damadge amounts
 {
-	return wep;
-}//if you need to see if "z" button was clicked
-
-public static void setWeapon(String wep)//set the players current weapon 
-{
-	wep=wep;
+	health-=hitType;
 }
 
-public static void healthDown(int hitType)//make different names for damadge amounts
+public void healthUp(int healthHelp)//int of how much health will increase by
 {
-	health=health-hitType;
-}
-
-public static void healthUp(int healthHelp)//int of how much health will increase by
-{
-	health=health+healthHelp;
+	health+=healthHelp;
 }
 
 }

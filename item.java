@@ -35,7 +35,6 @@ public void zKeyIsPressed()//get the item the player got, the health of player,
 	if (NameOne.equals("medkit"))//give player full health back
 	{
 		MovmentspaceObject.setHealth(6); 
-		
 	}
 	else if(NameOne.equals("running shoes"))
 	{
