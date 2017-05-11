@@ -35,19 +35,30 @@ public int x,y;
 		if(e.getKeyCode()==37)//left arrow key pressed
 		{
 			x=x+1;
-			if(g[x][y]==0){
-			g[x][y]=1;
+			if(x==7){
+				x=x-1;
 			}
-			else{
+			else
+			{
+			if(g[x][y]==0){
 				g[x-1[y]=0;
+			g[x][y]=1;
+				  }
+				
+			else{
 				x=x-1;
 				g[x][y]=1;
 			}
+				  }
 			//update player position
 		}
 		else if(e.getKeyCode()==38)//up arrow key pressed
 		{
 			y=y+1;
+			if(y==7){
+				y=y-1;
+			}
+			else{
 			if(g[x][y]==0){
 				g[x][y-1]=0;
 			g[x][y]=1;
@@ -56,11 +67,16 @@ public int x,y;
 				x=y-1;
 				g[x][y]=1;
 			}
+			}
 			//update player position
 		}
 		else if(e.getKeyCode()==39)//right arrow key pressed
 		{
 			x=x-1;
+			if(x==-1){
+			x=x+1;	
+			}
+			else{
 			if(g[x][y]==0){
 				g[x+1][y]=0;
 			g[x][y]=1;
@@ -69,18 +85,25 @@ public int x,y;
 				x=x+1;
 				g[x][y]=1;
 			}
+			}
 			//update player position
 		}
 		else if(e.getKeyCode()==40)//down arrow key pressed
 		{
-			g[x][y]=0;
+			
 			y=y-1;
+			if(y==-1){
+				y=y+1;
+			}
+			else{
 			if(g[x][y]==0){
+				g[x][y+1]=0;
 			g[x][y]=1;
 			}
 			else{
 				x=y+1;
 				g[x][y]=1;
+			}
 			}
 			//update player position
 		}
