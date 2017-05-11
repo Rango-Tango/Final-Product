@@ -8,7 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class ToAddToGUI extends JFrame implements KeyListener{
-
+public int x,y;
+	x=4;
+	y=4;
 	private JPanel contentPane;
 
 	/**
@@ -32,18 +34,54 @@ public class ToAddToGUI extends JFrame implements KeyListener{
 	{
 		if(e.getKeyCode()==37)//left arrow key pressed
 		{
+			g[x][y]=0;
+			x=x+1;
+			if(g[x][y]==0){
+			g[x][y]=1;
+			}
+			else{
+				x=x-1;
+				g[x][y]=1;
+			}
 			//update player position
 		}
 		else if(e.getKeyCode()==38)//up arrow key pressed
 		{
+			g[x][y]=0;
+			y=y+1;
+			if(g[x][y]==0){
+			g[x][y]=1;
+			}
+			else{
+				x=y-1;
+				g[x][y]=1;
+			}
 			//update player position
 		}
 		else if(e.getKeyCode()==39)//right arrow key pressed
 		{
+			g[x][y]=0;
+			x=x-1;
+			if(g[x][y]==0){
+			g[x][y]=1;
+			}
+			else{
+				x=x+1;
+				g[x][y]=1;
+			}
 			//update player position
 		}
 		else if(e.getKeyCode()==40)//down arrow key pressed
 		{
+			g[x][y]=0;
+			y=y-1;
+			if(g[x][y]==0){
+			g[x][y]=1;
+			}
+			else{
+				x=y+1;
+				g[x][y]=1;
+			}
 			//update player position
 		}
 		else if(e.getKeyCode()==32)//space bar
