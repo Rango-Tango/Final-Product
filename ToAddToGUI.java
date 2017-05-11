@@ -34,12 +34,12 @@ public int x,y;
 	{
 		if(e.getKeyCode()==37)//left arrow key pressed
 		{
-			g[x][y]=0;
 			x=x+1;
 			if(g[x][y]==0){
 			g[x][y]=1;
 			}
 			else{
+				g[x-1[y]=0;
 				x=x-1;
 				g[x][y]=1;
 			}
@@ -47,9 +47,9 @@ public int x,y;
 		}
 		else if(e.getKeyCode()==38)//up arrow key pressed
 		{
-			g[x][y]=0;
 			y=y+1;
 			if(g[x][y]==0){
+				g[x][y-1]=0;
 			g[x][y]=1;
 			}
 			else{
@@ -60,9 +60,9 @@ public int x,y;
 		}
 		else if(e.getKeyCode()==39)//right arrow key pressed
 		{
-			g[x][y]=0;
 			x=x-1;
 			if(g[x][y]==0){
+				g[x+1][y]=0;
 			g[x][y]=1;
 			}
 			else{
