@@ -46,10 +46,6 @@ public class ToAddToGUI extends JFrame implements KeyListener{
 		{
 			//update player position
 		}
-		else if(e.getKeyCode()==32)//space bar
-		{
-			//attack
-		}
 		else if(e.getKeyCode()==90)//z key
 		{
 			//use item in z slot
@@ -61,10 +57,6 @@ public class ToAddToGUI extends JFrame implements KeyListener{
 		else if(e.getKeyCode()==67)//c key
 		{
 			//use item in c slot
-		}
-		else if(e.getKeyCode()==66)//b key
-		{
-			//switch weapons
 		}
 	}
 	@Override
