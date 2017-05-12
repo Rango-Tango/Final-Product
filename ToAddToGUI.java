@@ -34,56 +34,56 @@ public int x,y;
 	{
 		if(e.getKeyCode()==37)//left arrow key pressed
 		{
-			x=x+1;
+			this.x=this.x+1;
 			if(x==7){
-				x=x-1;
+				this.x=this.x-1;
 			}
 			else
 			{
-			if(g[x][y]==0){
-				g[x-1[y]=0;
-			g[x][y]=1;
+			if(g[this.x][this.y]==0){
+				g[this.x-1][this.y]=0;
+			g[this.x][this.y]=1;
 				  }
 				
 			else{
-				x=x-1;
-				g[x][y]=1;
+				this.x=this.x-1;
+				g[this.x][this.y]=1;
 			}
 				  }
 			//update player position
 		}
 		else if(e.getKeyCode()==38)//up arrow key pressed
 		{
-			y=y+1;
-			if(y==7){
-				y=y-1;
+			this.y=this.y+1;
+			if(this.y==7){
+				this.y=this.y-1;
 			}
 			else{
-			if(g[x][y]==0){
-				g[x][y-1]=0;
-			g[x][y]=1;
+			if(g[this.x][this.y]==0){
+				g[this.x][this.y-1]=0;
+			g[this.x][this.y]=1;
 			}
 			else{
-				x=y-1;
-				g[x][y]=1;
+				this.x=this.y-1;
+				g[this.x][this.y]=1;
 			}
 			}
 			//update player position
 		}
 		else if(e.getKeyCode()==39)//right arrow key pressed
 		{
-			x=x-1;
-			if(x==-1){
-			x=x+1;	
+			this.x=this.x-1;
+			if(this.x==-1){
+			this.x=this.x+1;	
 			}
 			else{
-			if(g[x][y]==0){
-				g[x+1][y]=0;
-			g[x][y]=1;
+			if(g[this.x][this.y]==0){
+				g[this.x+1][this.y]=0;
+			g[this.x][this.y]=1;
 			}
 			else{
-				x=x+1;
-				g[x][y]=1;
+				this.x=this.x+1;
+				g[this.x][this.y]=1;
 			}
 			}
 			//update player position
@@ -91,18 +91,18 @@ public int x,y;
 		else if(e.getKeyCode()==40)//down arrow key pressed
 		{
 			
-			y=y-1;
-			if(y==-1){
-				y=y+1;
+			this.y=this.y-1;
+			if(this.y==-1){
+				this.y=this.y+1;
 			}
 			else{
-			if(g[x][y]==0){
-				g[x][y+1]=0;
-			g[x][y]=1;
+			if(g[this.x][this.y]==0){
+				g[this.x][this.y+1]=0;
+			g[this.x][this.y]=1;
 			}
 			else{
-				x=y+1;
-				g[x][y]=1;
+				this.x=this.y+1;
+				g[this.x][this.y]=1;
 			}
 			}
 			//update player position
