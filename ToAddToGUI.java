@@ -43,6 +43,7 @@ public int x,y;
 			if(g[this.x][this.y]==0){
 				g[this.x-1][this.y]=0;
 			g[this.x][this.y]=1;
+				roomtransition(this.x,thix.y);
 				  }
 				
 			else{
@@ -62,6 +63,7 @@ public int x,y;
 			if(g[this.x][this.y]==0){
 				g[this.x][this.y-1]=0;
 			g[this.x][this.y]=1;
+				roomtransition(this.x,thix.y);
 			}
 			else{
 				this.x=this.y-1;
@@ -80,6 +82,7 @@ public int x,y;
 			if(g[this.x][this.y]==0){
 				g[this.x+1][this.y]=0;
 			g[this.x][this.y]=1;
+				roomtransition(this.x,thix.y);
 			}
 			else{
 				this.x=this.x+1;
@@ -99,6 +102,7 @@ public int x,y;
 			if(g[this.x][this.y]==0){
 				g[this.x][this.y+1]=0;
 			g[this.x][this.y]=1;
+				roomtransition(this.x,thix.y);
 			}
 			else{
 				this.x=this.y+1;
