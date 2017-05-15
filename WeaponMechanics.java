@@ -26,6 +26,7 @@ public class WeaponMechanics
 				proj=1;
 				Bow.Shoot(MovementspaceObject.getX(),MovementspaceObject.getY(),PlayerMovement.Getd());
 			}
+			PD.Refresh();
 		}
 		else if(cw.equals("Bomb"))
 		{
@@ -34,7 +35,8 @@ public class WeaponMechanics
 				bomb++;
 				bombx=(MovementspaceObject.getX());
 				bomby=(MovementspaceObject.getY());
-				PersonDisplay.Bomb(bombx,bomby);
+				PD.bomb.set(0, bombx);
+				PD.bomb.set(1, bomby);
 			}
 			else
 			{
@@ -47,6 +49,7 @@ public class WeaponMechanics
 					}
 				}
 			}
+			PD.Refresh();
 		}
 		else if(cw.equals("Shank"))
 		{
@@ -66,7 +69,7 @@ public class WeaponMechanics
 				Bow.Shoot(MovementspaceObject.getX(),MovementspaceObject.getY(),PlayerMovement.Getd());
 			}
 		}
-		PersonDisplay.Paint();
+		PD.Refresh();
 	}
 	public static int Projectile()
 	{
@@ -75,5 +78,13 @@ public class WeaponMechanics
 	public static void Kill()
 	{
 		proj=0;
+	}
+	public static int Bombx()
+	{
+		return bombx;
+	}
+	public static int Bomby()
+	{
+		return bomby;
 	}
 }

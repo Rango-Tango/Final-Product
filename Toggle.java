@@ -1,6 +1,5 @@
 import java.awt.event.*;
 import java.util.*;
-
 public class Toggle 
 {
 	String cw=new String("Sword");
@@ -14,7 +13,7 @@ public class Toggle
 		weap.add("Bomb");
 		weap.add("Shank");
 		weap.add("Peanuts");
-		Tester.frame.addKeyListener(new KeyListener()
+		M_M.frame.addKeyListener(new KeyListener()
 		{
 			@Override
 			public void keyPressed(KeyEvent e)
@@ -31,7 +30,7 @@ public class Toggle
 						cwn=0;
 						cw=("Sword");
 					}
-					PersonDisplay.Weaponset(cw);
+					PD.Weaponset(cw);
 				}
 				else if(e.getKeyCode()==32)//space
 				{
@@ -39,17 +38,14 @@ public class Toggle
 				}
 				MovementspaceObject.setWeapon(cw);
 			}
-
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 		});
 	}

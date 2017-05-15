@@ -8,22 +8,7 @@ public class Bow
 		projectile[0]=x;
 		projectile[1]=y;
 		d=dir;
-		if(d==0)
-		{
-			projectile[1]++;
-		}
-		else if(d==1)
-		{
-			projectile[0]--;
-		}
-		else if(d==2)
-		{
-			projectile[1]--;
-		}
-		else if(d==3)
-		{
-			projectile[0]++;
-		}
+		PD.ad=dir;
 	}
 	public static void Time()
 	{
@@ -66,5 +51,13 @@ public class Bow
 				WeaponMechanics.Kill();
 			}			
 		}
+	}
+	public static int getx()
+	{
+		return projectile[0];
+	}
+	public static int gety()
+	{
+		return projectile[1];
 	}
 }
