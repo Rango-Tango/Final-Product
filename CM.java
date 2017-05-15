@@ -38,7 +38,7 @@ public class CM extends JPanel {
 		JLabel lblNewLabel_4 = new JLabel("Use consumable");
 		add(lblNewLabel_4, "cell 7 6");
 		
-		JLabel lblNewLabel_8 = new JLabel("n");
+		JLabel lblNewLabel_8 = new JLabel("z");
 		add(lblNewLabel_8, "cell 9 6");
 		
 		JButton btnNewButton = new JButton("Return");
