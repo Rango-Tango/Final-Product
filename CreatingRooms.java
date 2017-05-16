@@ -2,15 +2,24 @@ import java.io.*;
 import java.util.*;
 public class CreatingRooms 
 {
-	public RoomObject left, up, right, down, start;
-	public Freebie f=null;
-	public Meanie m=null;
-	public int[] item = new int[3];
-	public int[] riddle = new int[3];
-	public int random = 0;
-	public int check=0;
-	File file = new File("FreebiesMeanies.txt");
-	public void startup()
+	public static RoomObject up, down, left, right, start;{
+	left = new RoomObject();
+	start = new RoomObject();
+	up = new RoomObject();
+	down = new RoomObject();
+	right = new RoomObject();
+	left.setJ(2);
+	right.setJ(3);
+	start.setJ(0);
+	up.setJ(1);}
+	public static Freebie f;
+	public static meanie m;
+	public static int[] item = new int[3];
+	public static int[] riddle = new int[3];
+	public static int random = 0;
+	public static int check=0;
+	public static File file = new File("Freebiesmeanies.txt");
+	public static void startup()
 	{
 		start.setFreebie(null);
 		start.setMeanie(null);
@@ -77,7 +86,6 @@ public class CreatingRooms
 					f.setAnswer(input.nextLine());
 					f.setX(4);
 					f.setY(4);
-					f.setHealth(999);
 				}
 				catch(IOException a)
 				{
@@ -86,7 +94,7 @@ public class CreatingRooms
 			else
 			{
 				f = null;
-				m = new Meanie();
+				m = new meanie();
 				try
 				{
 					Scanner input = new Scanner(file);
@@ -95,9 +103,9 @@ public class CreatingRooms
 						input.nextLine();
 					}
 					m.setItem(input.nextLine());
-					m.setX(4);
-					m.setY(4);
-					m.setHealth(3);
+					m.setXM(4);
+					m.setYM(4);
+					m.setHealthM(3);
 				}
 				catch(IOException a)
 				{

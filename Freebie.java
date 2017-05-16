@@ -1,8 +1,10 @@
 
-public class Freebie extends MovementspaceObject
+public class Freebie
 {
+	private String item;
 	private String riddle;
 	private String answer;
+	private int x, y;
 	public void Freebie()
 	{
 	}
@@ -21,5 +23,29 @@ public class Freebie extends MovementspaceObject
 	public String getAnswer()
 	{
 		return answer;
+	}
+	public void setItem(String s)
+	{
+		item = s;
+	}
+	public String getItem()
+	{
+		return item;
+	}
+	public int getX()
+	{
+		return x;
+	}
+	public void setX(int x)
+	{
+		this.x = x;
+	}
+	public int getY()
+	{
+		return y;
+	}
+	public void setY(int y)
+	{
+		this.y = y;
 	}
 }

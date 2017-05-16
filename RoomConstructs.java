@@ -14,7 +14,7 @@ public class RoomConstructs extends JPanel {
 	   }
 	   public  void paint(Graphics g) {
 		   if(j==1){
-			   LockedMiddleRoom(g);
+			   TopRoom(g);
 		   }
 		   else if(j==0){
 			   MiddleRoom(g);
@@ -97,7 +97,7 @@ public class RoomConstructs extends JPanel {
 		     g.drawLine(25, 175, 25, 225);
 		     
 	   }
-	   public void LockedMiddleRoom(Graphics g){
+	   public void TopRoom(Graphics g){
 		   Color y = null;
 		      g.fillRect (0, 0, 500, 500);
 		     g.setColor(y.green);
@@ -117,7 +117,6 @@ public class RoomConstructs extends JPanel {
 		     g.drawLine(25, 325, 375, 325);
 		     //Horizontal Lines
 		     g.setColor(y.black);
-		     g.drawLine(375, 175, 375, 225);
-		     g.drawLine(25, 175, 25, 225);   
+		     g.drawLine(175, 375, 225, 375);   
 	   }
 	}
