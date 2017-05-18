@@ -1,8 +1,9 @@
 import java.io.*;
 import java.util.*;
+import java.awt.Graphics;
 public class CreatingRooms 
 {
-	public static RoomObject up, down, left, right, start;{
+	public static RoomObject up, down, left, right, start, current;{
 	left = new RoomObject();
 	start = new RoomObject();
 	up = new RoomObject();
@@ -103,9 +104,9 @@ public class CreatingRooms
 						input.nextLine();
 					}
 					m.setItem(input.nextLine());
-					m.setXM(4);
-					m.setYM(4);
-					m.setHealthM(3);
+					m.setX(4);
+					m.setY(4);
+					m.sethealth(3);
 				}
 				catch(IOException a)
 				{
@@ -129,5 +130,6 @@ public class CreatingRooms
 				break;
 			}
 		}
+		current = start;
 	}
 }

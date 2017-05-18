@@ -10,11 +10,11 @@ public class WeaponMechanics
 	{
 		if(cw.equals("Sword"))
 		{
-			if(meanie.getXM() == MovementspaceObject.getX()+1||meanie.getXM() == MovementspaceObject.getX()-1||meanie.getXM() == MovementspaceObject.getX())
+			if(meanie.getX() == MovementspaceObject.getX()+1||meanie.getX() == MovementspaceObject.getX()-1||meanie.getX() == MovementspaceObject.getX())
 			{
-				if(meanie.getYM() == MovementspaceObject.getY()+1||meanie.getYM() == MovementspaceObject.getY()-1||meanie.getYM() == MovementspaceObject.getY())
+				if(meanie.getY() == MovementspaceObject.getY()+1||meanie.getY() == MovementspaceObject.getY()-1||meanie.getY() == MovementspaceObject.getY())
 				{
-					meanie.setHeatlh(meanie.getHealthM()-1);
+					meanie.sethealth(meanie.gethealth()-1);
 				}
 			}
 
@@ -41,11 +41,11 @@ public class WeaponMechanics
 			else
 			{
 				bomb--;
-				if(meanie.getXM() == bombx+1||meanie.getXM() == bombx-1||meanie.getXM() == bombx)
+				if(meanie.getX() == bombx+1||meanie.getX() == bombx-1||meanie.getX() == bombx)
 				{
-					if(meanie.getYM() == bomby||meanie.getYM() == bomby-1||meanie.getYM() == bomby)
+					if(meanie.getY() == bomby||meanie.getY() == bomby-1||meanie.getY() == bomby)
 					{
-						meanie.setHeatlh(meanie.getHealthM()-2);
+						meanie.sethealth(meanie.gethealth()-2);
 					}
 				}
 			}
@@ -53,11 +53,11 @@ public class WeaponMechanics
 		}
 		else if(cw.equals("Shank"))
 		{
-			if(meanie.getXM() == MovementspaceObject.getX()+1||meanie.getXM() == MovementspaceObject.getX()-1||meanie.getXM() == MovementspaceObject.getX())
+			if(meanie.getX() == MovementspaceObject.getX()+1||meanie.getX() == MovementspaceObject.getX()-1||meanie.getX() == MovementspaceObject.getX())
 			{
-				if(meanie.getYM() == MovementspaceObject.getY()+1||meanie.getYM() == MovementspaceObject.getY()-1||meanie.getYM() == MovementspaceObject.getY())
+				if(meanie.getY() == MovementspaceObject.getY()+1||meanie.getY() == MovementspaceObject.getY()-1||meanie.getY() == MovementspaceObject.getY())
 				{
-					meanie.setHeatlh(meanie.getHealthM()-2);
+					meanie.sethealth(meanie.gethealth()-2);
 				}
 			}
 		}

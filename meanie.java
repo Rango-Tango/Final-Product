@@ -1,82 +1,79 @@
-public abstract class meanie {
+public class meanie {
 
-	public meanie(String [][]location)
+	public void meanie()
 	{
-		
+
 	}//need to set weapon, set health, get location
-	
-	protected int healthM=4;
-	protected int XofM, YofM;//the x and y coordinats of the meanie
-	
+
+	protected static int health=4;
+	private String item;
+	protected static int x, y;//the x and y coordinats of the meanie
+
 	//protected String[][] locationM=new String [8][8];
-	
-	public int getHealthM ()
+
+	public static int gethealth ()
 	{
-		return healthM;
+		return health;
 	}//get the meanie health
-	
-	public void setHealthM (int healthM)
+
+	public static void sethealth (int heal)
 	{
-		this.healthM=healthM;
+		health=heal;
 	}//setting health of meanie
-	
-	public void setXM(int X)
+
+	public void setX(int X)
 	{
-		XofM=X;
+		x=X;
 	}
-	
-	public void setYM(int Y)
+
+	public void setY(int Y)
 	{
-		YofM=Y;
+		y=Y;
 	}
-	
-	public int getXM()
+
+	public static int getX()
 	{
-		return XofM;
+		return x;
 	}
-	
-	public int getYM()
+
+	public static int getY()
 	{
-		return YofM;
+		return y;
 	}
-	
+	public String getItem()
+	{
+		return item;
+	}
+	public void setItem(String item)
+	{
+		this.item = item;
+	}
 	public void hitM(String weaponP)
 	{
 		if (weaponP.equals("sword"))//if the item the player has is a basic sword, he gets .5 heats off
 		{
-			healthM=healthM-1;	
+			health=health-1;	
 		}
 		else if (weaponP.equals("bow"))
 		{
-			healthM=healthM-2;//lose a heart
+			health=health-2;//lose a heart
 		}
 		else if (weaponP.equals("bomb"))
 		{
-			healthM=healthM-2;//loose a heart
+			health=health-2;//loose a heart
 		}
 		else if(weaponP.equals("shank"))
 		{
-			healthM=healthM-2;//lose a heart
+			health=health-2;//lose a heart
 		}
 	}
-
-	public String[][] getLocationM ()
-	{
-		return locationM;
-	}//returning location of meanie
-
-	public void setLocationM (int xM, int yM)
-	{
-		this.locationM[xM][yM]=locationM [xM][yM];
-	}//setting location of meanie
-
 	public void meanieAI (String [][] playerlocal/*need player's current x an y */, meanie mean)//need the player location and the pre-created meanie(in main have this update with player movemnt
 	{
 		//each time the player moves in a meanie room they need to update this
 
 		int loopingStall=0,cri=0;
 		int xGoal, yGoal,jumpBack, shiftX,shiftY;//where player is/ goal for meanie
-		
+
 		//%%%%%% figure out how he stored it, i understand as an array but, how can i get the number out//
 		//what did he store in the array? can i char AT it to separate?
 
@@ -89,74 +86,74 @@ public abstract class meanie {
 
 		while (cri==-1)//to stop the meanie from going (only when dead)
 		{
-			if (XofM==xGoal&&YofM==yGoal)//manie hits player and jumps back
+			if (x==xGoal&&y==yGoal)//manie hits player and jumps back
 			{
 				MovementspaceObject.healthDown(1);// if player is hit
 
 				if (jumpBack==1||jumpBack==4||jumpBack==6)//set meanie to another local
 				{
-					if (XofM>=3)
-					{shiftX=(XofM-2);}
+					if (x>=3)
+					{shiftX=(x-2);}
 					else
-					{shiftX=(XofM+3);}
-					
-					if (YofM<=1)
-					{shiftY=(YofM+2);					}
-					else {shiftY =YofM-2;	}
-mean.setXM(shiftX);
-mean.setYM(shiftY);
+					{shiftX=(x+3);}
+
+					if (y<=1)
+					{shiftY=(y+2);					}
+					else {shiftY =y-2;	}
+					mean.setX(shiftX);
+					mean.setY(shiftY);
 				}
 				//dont actually set the jump back untill u make sure its in the frame 0<x<7
 				else if (jumpBack==2||jumpBack==5||jumpBack==8)
 				{
-					if (XofM>=4 )
-					{shiftX=(XofM-3);}
+					if (x>=4 )
+					{shiftX=(x-3);}
 					else
-					{shiftX=(XofM+2);}
-					
-					if (YofM<=6)
-					{shiftY=(YofM+1);					}
-					else {shiftY =YofM-3;	}
-mean.setXM(shiftX);
-mean.setYM(shiftY);
+					{shiftX=(x+2);}
+
+					if (y<=6)
+					{shiftY=(y+1);					}
+					else {shiftY =y-3;	}
+					mean.setX(shiftX);
+					mean.setY(shiftY);
 				}
 				else if(jumpBack==3||jumpBack==7||jumpBack==9)
 				{
-					if (XofM>=6 )
-					{shiftX=(XofM-4);}
+					if (x>=6 )
+					{shiftX=(x-4);}
 					else
-					{shiftX=(XofM+2);}
-					
-					if (YofM>=5)
-					{shiftY=(YofM-1);					}
-					else {shiftY =YofM+3;	}
-mean.setXM(shiftX);
-mean.setYM(shiftY);
+					{shiftX=(x+2);}
+
+					if (y>=5)
+					{shiftY=(y-1);					}
+					else {shiftY =y+3;	}
+					mean.setX(shiftX);
+					mean.setY(shiftY);
 				}
 			}
 			else //meanie trying to get to player 
 			{
-if ((mean.getXM())>=xGoal)
-{
-	mean.setXM((mean.getXM()-1));
-}
-else if ((mean.getXM())<=xGoal)
-{
-	mean.setXM((mean.getXM()+1));
-}
+				if ((mean.getX())>=xGoal)
+				{
+					mean.setX((mean.getX()-1));
+				}
+				else if ((mean.getX())<=xGoal)
+				{
+					mean.setX((mean.getX()+1));
+				}
 
-if ((mean.getYM())>=yGoal)
-{
-	mean.setYM((mean.getYM()-1));
-}
-else if ((mean.getYM())<=yGoal)
-{
-	mean.setYM((mean.getYM()+1));
-}
-				
+				if ((mean.getY())>=yGoal)
+				{
+					mean.setY((mean.getY()-1));
+				}
+				else if ((mean.getY())<=yGoal)
+				{
+					mean.setY((mean.getY()+1));
+				}
+
 			}//end of else 
 
-			int stat=mean.getHealthM();
+			int stat=mean.gethealth();
 			if (stat==0)//meanie has no health
 			{
 				cri=-1;
@@ -165,7 +162,7 @@ else if ((mean.getYM())<=yGoal)
 			{
 
 			}
-			
+
 		}//while
 
 	}

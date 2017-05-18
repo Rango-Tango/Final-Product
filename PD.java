@@ -90,8 +90,8 @@ public class PD extends JPanel
 	{
 		int x1=MovementspaceObject.getX();
 		int y1=MovementspaceObject.getY();
-		int x2=meanie.getXM();
-		int y2=meanie.getYM();
+		int x2=meanie.getX();
+		int y2=meanie.getY();
 		Bow.Time();
 		arrow.set(0, Bow.getx());
 		arrow.set(1, Bow.gety());

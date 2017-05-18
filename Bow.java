@@ -36,11 +36,11 @@ public class Bow
 			d=-1;
 			WeaponMechanics.Kill();
 		}
-		else if(projectile[0]==meanie.getXM() && projectile[1]==meanie.getYM())
+		else if(projectile[0]==meanie.getX() && projectile[1]==meanie.getY())
 		{
 			if(WeaponMechanics.Projectile()==1)
 			{
-				meanie.setHeatlh(meanie.getHealthM()-1);
+				meanie.sethealth(meanie.gethealth()-1);
 				d=-1;
 				WeaponMechanics.Kill();
 			}

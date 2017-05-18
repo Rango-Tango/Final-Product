@@ -38,9 +38,9 @@ public static String getWeapon()//get the players current space trigered weapon
 	return wep;
 }//if you need to see if "z" button was clicked
 
-public static void setWeapon(String wep)//set the players current weapon 
+public static void setWeapon(String weapon)//set the players current weapon 
 {
-	wep=wep;
+	wep = weapon;
 }
 
 public static void healthDown(int hitType)//make different names for damadge amounts
