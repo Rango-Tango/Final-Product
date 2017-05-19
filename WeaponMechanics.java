@@ -17,6 +17,13 @@ public class WeaponMechanics
 					meanie.setHeatlh(meanie.getHealthM()-1);
 				}
 			}
+			else if(3==MovementspaceObject.getX()+1||3==MovementspaceObject.getX()-1||3==MovementspaceObject.getX())
+			{
+				if()
+				{
+					
+				}
+			}
 
 		}
 		else if(cw.equals("Bow"))
@@ -26,7 +33,6 @@ public class WeaponMechanics
 				proj=1;
 				Bow.Shoot(MovementspaceObject.getX(),MovementspaceObject.getY(),PlayerMovement.Getd());
 			}
-			PD.Refresh();
 		}
 		else if(cw.equals("Bomb"))
 		{

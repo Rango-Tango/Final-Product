@@ -2,7 +2,7 @@ import java.awt.event.*;
 import java.util.*;
 public class Toggle 
 {
-	String cw=new String("Sword");
+	static String cw=new String("Sword");
 	static int cwn=0;
 	static int weapons=5;
 	static ArrayList<String> weap=new ArrayList<String>();
@@ -36,6 +36,10 @@ public class Toggle
 				{
 					WeaponMechanics.Attack(cw);
 				}
+				else if(e.getKeyCode()==27)//esc
+				{
+					M_M.Boss();
+				}
 				MovementspaceObject.setWeapon(cw);
 			}
 			@Override
@@ -53,5 +57,9 @@ public class Toggle
 	{
 		weapons++;
 		weap.add(weapon);
+	}
+	public static String CurWeap()
+	{
+		return cw;
 	}
 }
