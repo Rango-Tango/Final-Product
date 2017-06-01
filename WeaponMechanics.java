@@ -3,18 +3,31 @@ public class WeaponMechanics
 {
 	static int proj=0;
 	static int bomb=0;
-	static int bombx=0;
-	static int bomby=0;
+	static int bombx=7;
+	static int bomby=7;
 	static int direction=0;
 	public static void Attack(String cw)
 	{
 		if(cw.equals("Sword"))
 		{
-			if(meanie.getX() == MovementspaceObject.getX()+1||meanie.getX() == MovementspaceObject.getX()-1||meanie.getX() == MovementspaceObject.getX())
+			if(M_M.boss==0)
 			{
-				if(meanie.getY() == MovementspaceObject.getY()+1||meanie.getY() == MovementspaceObject.getY()-1||meanie.getY() == MovementspaceObject.getY())
+				if(meanie.getX() == MovementspaceObject.getX()+1||meanie.getX() == MovementspaceObject.getX()-1||meanie.getX() == MovementspaceObject.getX())
 				{
-					meanie.sethealth(meanie.gethealth()-1);
+					if(meanie.getY() == MovementspaceObject.getY()+1||meanie.getY() == MovementspaceObject.getY()-1||meanie.getY() == MovementspaceObject.getY())
+					{
+						meanie.sethealth(meanie.gethealth()-1);
+					}
+				}
+			}
+			else if(M_M.boss==1)
+			{
+				if(3==MovementspaceObject.getX()+1||3==MovementspaceObject.getX()-1||3==MovementspaceObject.getX())
+				{
+					if(6==MovementspaceObject.getY()+1||6==MovementspaceObject.getY()-1||6==MovementspaceObject.getY())
+					{
+						Boss.setHealth(Boss.getHealth()-1);
+					}
 				}
 			}
 
@@ -23,10 +36,17 @@ public class WeaponMechanics
 		{
 			if(proj==0)
 			{
-				proj=1;
-				Bow.Shoot(MovementspaceObject.getX(),MovementspaceObject.getY(),PlayerMovement.Getd());
+				if(M_M.boss==0)
+				{
+					proj=1;
+					Bow.Shoot(MovementspaceObject.getX(),MovementspaceObject.getY(),PlayerMovement.Getd());
+				}
+				else
+				{
+					proj=1;
+					Bow.Shoot(MovementspaceObject.getX(),MovementspaceObject.getY(),BossListener.d);	
+				}
 			}
-			PD.Refresh();
 		}
 		else if(cw.equals("Bomb"))
 		{
@@ -48,6 +68,13 @@ public class WeaponMechanics
 						meanie.sethealth(meanie.gethealth()-2);
 					}
 				}
+				else if(3 == bombx+1||3 == bombx-1||3 == bombx)
+				{
+					if(6 == bomby||6 == bomby-1||6 == bomby)
+					{
+						Boss.setHealth(Boss.getHealth()-1);
+					}
+				}
 			}
 			PD.Refresh();
 		}
@@ -60,16 +87,38 @@ public class WeaponMechanics
 					meanie.sethealth(meanie.gethealth()-2);
 				}
 			}
+			else if(3==MovementspaceObject.getX()+1||3==MovementspaceObject.getX()-1||3==MovementspaceObject.getX())
+			{
+				if(6==MovementspaceObject.getY()+1||6==MovementspaceObject.getY()-1||6==MovementspaceObject.getY())
+				{
+					Boss.setHealth(Boss.getHealth()-1);
+				}
+			}
 		}
 		else	//peanuts!
 		{
 			if(proj==0)
 			{
-				proj=2;
-				Bow.Shoot(MovementspaceObject.getX(),MovementspaceObject.getY(),PlayerMovement.Getd());
+				if(M_M.boss==0)
+				{
+					proj=2;
+					Bow.Shoot(MovementspaceObject.getX(),MovementspaceObject.getY(),PlayerMovement.Getd());
+				}
+				else
+				{
+					proj=2;
+					Bow.Shoot(MovementspaceObject.getX(),MovementspaceObject.getY(),BossListener.d);	
+				}
 			}
 		}
-		PD.Refresh();
+		if(M_M.boss==0)
+		{
+			PD.Refresh();
+		}
+		else
+		{
+			BD.Refresh();
+		}
 	}
 	public static int Projectile()
 	{
@@ -78,6 +127,8 @@ public class WeaponMechanics
 	public static void Kill()
 	{
 		proj=0;
+		Bow.projectile[1]=7;
+		Bow.projectile[0]=7;
 	}
 	public static int Bombx()
 	{

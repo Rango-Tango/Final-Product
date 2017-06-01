@@ -1,4 +1,3 @@
-
 public class Bow
 {
 	static int [] projectile = new int[2];
@@ -9,47 +8,51 @@ public class Bow
 		projectile[1]=y;
 		d=dir;
 		PD.ad=dir;
+		BD.ad=dir;
 	}
 	public static void Time()
 	{
-		if(d==-1)
+		if (WeaponMechanics.Projectile()!=0)
 		{
-		}
-		else if(d==0)
-		{
-			projectile[1]++;
-		}
-		else if(d==1)
-		{
-			projectile[0]--;
-		}
-		else if(d==2)
-		{
-			projectile[1]--;
-		}
-		else if(d==3)
-		{
-			projectile[0]++;
-		}
-		if(projectile[0]==7||projectile[1]==7||projectile[1]==-1||projectile[1]==-1)
-		{
-			d=-1;
-			WeaponMechanics.Kill();
-		}
-		else if(projectile[0]==meanie.getX() && projectile[1]==meanie.getY())
-		{
-			if(WeaponMechanics.Projectile()==1)
+			if(d==-1)
 			{
-				meanie.sethealth(meanie.gethealth()-1);
+			}
+			else if(d==0)
+			{
+				projectile[1]++;
+			}
+			else if(d==1)
+			{
+				projectile[0]--;
+			}
+			else if(d==2)
+			{
+				projectile[1]--;
+			}
+			else if(d==3)
+			{
+				projectile[0]++;
+			}
+			if(projectile[0]==7||projectile[1]==7||projectile[0]==-1||projectile[1]==-1)
+			{
 				d=-1;
 				WeaponMechanics.Kill();
 			}
-			else if(WeaponMechanics.Projectile()==2)
+			else if(projectile[0]==meanie.getX() && projectile[1]==meanie.getY())
 			{
-				//lol no damage
-				d=-1;
-				WeaponMechanics.Kill();
-			}			
+				if(WeaponMechanics.Projectile()==1)
+				{
+					meanie.sethealth(meanie.gethealth()-1);
+					d=-1;
+					WeaponMechanics.Kill();
+				}
+				else if(WeaponMechanics.Projectile()==2)
+				{
+					//lol no damage
+					d=-1;
+					WeaponMechanics.Kill();
+				}			
+			}
 		}
 	}
 	public static int getx()
@@ -59,5 +62,58 @@ public class Bow
 	public static int gety()
 	{
 		return projectile[1];
+	}
+	public static void BossTime()
+	{
+		if (WeaponMechanics.Projectile()!=0)
+		{
+			if(d==-1)
+			{
+			}
+			else if(d==0)
+			{
+				projectile[1]++;
+			}
+			else if(d==1)
+			{
+				projectile[0]--;
+			}
+			else if(d==2)
+			{
+				projectile[1]--;
+			}
+			else if(d==3)
+			{
+				projectile[0]++;
+			}
+			if(projectile[0]==7||projectile[1]==7||projectile[0]==-1||projectile[1]==-1)
+			{
+				d=-1;
+				WeaponMechanics.Kill();
+			}
+			else if(projectile[0]==3 && projectile[1]==6)
+			{
+				if(WeaponMechanics.Projectile()==1)
+				{
+					d=-1;
+					WeaponMechanics.Kill();
+				}
+				if(WeaponMechanics.Projectile()==2)
+				{
+					Boss.setHealth(0);
+					d=-1;
+					WeaponMechanics.Kill();
+				}			
+			}
+			else if(Ban.find(projectile[0],projectile[1])!=-1)//hits boss projectile
+			{
+				WeaponMechanics.Kill();
+			}
+			else if(SB.find(projectile[0],projectile[1])!=-1)//hits boss special projectile
+			{
+				WeaponMechanics.Kill();
+				SB.kill(SB.find(projectile[0],projectile[1]));
+			}
+		}
 	}
 }
