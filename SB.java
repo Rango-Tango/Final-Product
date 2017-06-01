@@ -3,6 +3,8 @@ public class SB
 {
 	static ArrayList<ArrayList<Integer>> ban=new ArrayList<ArrayList<Integer>>();
 	static int num=0;
+	static int hit=0;
+	static int pos=7;
 	public static void add(int x)
 	{
 		ban.add(new ArrayList<Integer>());
@@ -27,13 +29,23 @@ public class SB
 			else if(ban.get(c).get(0)==Bow.getx()&&ban.get(c).get(1)==Bow.gety())
 			{
 				WeaponMechanics.Kill();
-				ban.get(c).set(1,5);
-				num--;
+				hit=1;
+				pos=Bow.gety();
 			}
 			else if(ban.get(c).get(0)==WeaponMechanics.Bombx()&&ban.get(c).get(1)==WeaponMechanics.Bomby())
 			{
 				WeaponMechanics.bomb=0;
 			}
+		}
+		if(hit==1)
+		{
+			for(int c=0;c<7;c++)
+			{
+				ban.remove(Ban.find(c, pos));
+				num--;
+			}
+			hit=0;
+			pos=7;
 		}
 	}
 	public static ArrayList<ArrayList<Integer>> Array()
