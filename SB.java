@@ -28,9 +28,9 @@ public class SB
 			}
 			else if(ban.get(c).get(0)==Bow.getx()&&ban.get(c).get(1)==Bow.gety())
 			{
-				WeaponMechanics.Kill();
-				hit=1;
 				pos=Bow.gety();
+				WeaponMechanics.Kill();
+				hit=1;	
 			}
 			else if(ban.get(c).get(0)==WeaponMechanics.Bombx()&&ban.get(c).get(1)==WeaponMechanics.Bomby())
 			{
@@ -39,13 +39,7 @@ public class SB
 		}
 		if(hit==1)
 		{
-			for(int c=0;c<7;c++)
-			{
-				ban.remove(Ban.find(c, pos));
-				num--;
-			}
-			hit=0;
-			pos=7;
+			SB.Hit(pos);
 		}
 	}
 	public static ArrayList<ArrayList<Integer>> Array()
@@ -63,7 +57,7 @@ public class SB
 		{
 			if(ban.get(c).get(1)<=-1)
 			{
-				Ban.kill(c);
+				SB.kill(c);
 			}
 			else if(x==ban.get(c).get(0)&&y==ban.get(c).get(1))
 			{
@@ -71,5 +65,22 @@ public class SB
 			}
 		}
 		return -1;
+	}
+	public static void Hit(int p)
+	{
+		for(int c=0;c<7;c++)
+		{
+			if(Ban.find(c,p)!=-1)
+			{
+				Ban.kill((Ban.find(c,p)));
+			}
+			else
+			{
+				ban.remove(SB.find(c,p));
+				num--;
+			}
+		}
+		hit=0;
+		p=7;
 	}
 }

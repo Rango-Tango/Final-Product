@@ -22,8 +22,7 @@ public class Ban
 			if(MovementspaceObject.getX()==ban.get(c).get(0) && MovementspaceObject.getY()==ban.get(c).get(1))
 			{
 				MovementspaceObject.health=MovementspaceObject.health-2;
-				ban.remove(c);
-				num--;
+				Ban.kill(c);
 			}
 			else if(ban.get(c).get(0)==Bow.getx()&&ban.get(c).get(1)==Bow.gety())
 			{
@@ -34,10 +33,6 @@ public class Ban
 				WeaponMechanics.bomb=0;
 			}
 		}
-	}
-	public static ArrayList<ArrayList<Integer>> Array()
-	{
-		return ban;
 	}
 	public static void kill(int n)
 	{
