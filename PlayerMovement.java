@@ -15,8 +15,6 @@ public class PlayerMovement
 					{
 						MovementspaceObject.setX(MovementspaceObject.getX()-1);
 						d=1;
-						Bow.Time();
-						PD.Refresh();
 					}
 				}
 				else if(e.getKeyCode()==38)//up arrow key pressed
@@ -25,8 +23,7 @@ public class PlayerMovement
 					{
 						MovementspaceObject.setY(MovementspaceObject.getY()+1);
 						d=0;
-						Bow.Time();
-						PD.Refresh();
+						//meanie.meanieAI(M_M.r.current.getMeanie());
 					}
 				}
 				else if(e.getKeyCode()==39)//right arrow key pressed
@@ -35,19 +32,6 @@ public class PlayerMovement
 					{
 						MovementspaceObject.setX(MovementspaceObject.getX()+1);
 						d=3;
-						Bow.Time();
-						PD.Refresh();
-					}
-					else
-					{
-						if(MovementspaceObject.getY()==3)
-						{
-							//move to next room
-							//paint new background and create meanie/freebie
-							//move player to left side of the room
-							MovementspaceObject.setX(0);
-							MovementspaceObject.setY(3);
-						}
 					}
 				}
 				else if(e.getKeyCode()==40)//down arrow key pressed
@@ -56,10 +40,60 @@ public class PlayerMovement
 					{
 						MovementspaceObject.setY(MovementspaceObject.getY()-1);
 						d=2;
-						Bow.Time();
-						PD.Refresh();
 					}
 				}
+				if(M_M.r.current == M_M.r.start)
+				{
+					if(MovementspaceObject.getX()==6 && MovementspaceObject.getY()==3)
+					{
+						M_M.r.current = M_M.r.right;
+					}
+					else if(MovementspaceObject.getX()==3 && MovementspaceObject.getY()==6)
+					{
+						M_M.r.current = M_M.r.up;
+					}
+					else if(MovementspaceObject.getX()==0 && MovementspaceObject.getY()==3)
+					{
+						M_M.r.current = M_M.r.left;
+					}
+				}
+				else if(M_M.r.current == M_M.r.left)
+				{
+					if(MovementspaceObject.getX()==6 && MovementspaceObject.getY()==3)
+					{
+						if(M_M.r.current.getMeanie()!=null)
+						{
+							M_M.r.current.getMeanie().setX(3);
+							M_M.r.current.getMeanie().setY(3);
+						}
+						M_M.r.current = M_M.r.start;
+					}
+				}
+				else if(M_M.r.current==M_M.r.up)
+				{
+					if(MovementspaceObject.getX()==3 && MovementspaceObject.getY()==0)
+					{
+						if(M_M.r.current.getMeanie()!=null)
+						{
+							M_M.r.current.getMeanie().setX(3);
+							M_M.r.current.getMeanie().setY(3);
+						}
+						M_M.r.current = M_M.r.start;
+					}
+				}
+				else if(M_M.r.current == M_M.r.right)
+				{
+					if(MovementspaceObject.getX()==0 && MovementspaceObject.getY()==3)
+					{
+						if(M_M.r.current.getMeanie()!=null)
+						{
+							M_M.r.current.getMeanie().setX(3);
+							M_M.r.current.getMeanie().setY(3);
+						}
+						M_M.r.current = M_M.r.start;
+					}
+				}
+				PD.Refresh();
 			}
 			@Override
 			public void keyReleased(KeyEvent e) {

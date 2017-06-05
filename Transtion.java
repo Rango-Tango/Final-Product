@@ -1,43 +1,53 @@
-import java.awt.Graphics;
+import javax.swing.JPanel;
 public class Transtion {
-	Graphics g;
-	RoomConstructs n;
-	int j;
-	public void roomTransition(int x,int y){
-		if (CreatingRooms.current==CreatingRooms.left)
+	static CreatingRooms d = new CreatingRooms();
+	static int j=0;
+	public static void roomTransition(int x, int y){
+		if (M_M.r.current==M_M.r.left)
 		{
-			if (MovementspaceObject.getX()==7 && MovementspaceObject.getY()==4){
-				CreatingRooms.current = CreatingRooms.start;
+			if (x==7 && y==4){
+				M_M.r.current = M_M.r.start;
+				j = 0;
 			}
 		}
-		else if(CreatingRooms.current==CreatingRooms.right)
+		else if(M_M.r.current==M_M.r.right)
 		{
-			if(MovementspaceObject.getX()==1 && MovementspaceObject.getY()==4)
+			if(x==1 && y==4)
 			{
-				CreatingRooms.current = CreatingRooms.start;
+				M_M.r.current = M_M.r.start;
+				j = 0;
 			}
 		}
-		else if(CreatingRooms.current == CreatingRooms.up)
+		else if(M_M.r.current == M_M.r.up)
 		{
-			if(MovementspaceObject.getX()==4 && MovementspaceObject.getY()==1)
+			if(x==4 && y==1)
 			{
-				CreatingRooms.current = CreatingRooms.start;
+				M_M.r.current = M_M.r.start;
+				j = 0;
 			}
 		}
-		else if(CreatingRooms.current == CreatingRooms.start)
+		else if(M_M.r.current == M_M.r.start)
 		{
-			if(MovementspaceObject.getX()==1 && MovementspaceObject.getY()==4)
+			if(x==1 && y==4)
 			{
-				CreatingRooms.current = CreatingRooms.left;
+				M_M.r.current = M_M.r.left;
+				j = 1;
 			}
-			else if(MovementspaceObject.getX()==7 && MovementspaceObject.getY()==4)
+			else if(x==7 && y==4)
 			{
-				CreatingRooms.current = CreatingRooms.right;
+				M_M.r.current = M_M.r.right;
+				j = 2;
 			}
-			else if(MovementspaceObject.getX()==4 && MovementspaceObject.getY()==7)
+			else if(x==4 && y==7)
 			{
-				CreatingRooms.current = CreatingRooms.up;
+				M_M.r.current = M_M.r.up;
+				j = 3;
 			}
 		}
+	}
+	
+	public static int getJ()
+	{
+		return j;
 	}
 }

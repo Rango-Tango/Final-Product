@@ -1,9 +1,9 @@
 
 public class RoomObject 
 {
-	private Freebie f=null;
-	private meanie m=null;
-	private int j;
+	public Freebie f = new Freebie();
+	public meanie m = new meanie();
+	public int MorF;//0 freebie, 1 meanie
 	public void RoomObject()
 	{
 	}
@@ -23,12 +23,19 @@ public class RoomObject
 	{
 		return m;
 	}
-	public int getJ()
+	public boolean ifMeanie()
 	{
-		return j;
-	}
-	public void setJ(int j)
-	{
-		this.j = j;
+		if(MorF==0)
+		{
+			return false;
+		}
+		else if(MorF==1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }

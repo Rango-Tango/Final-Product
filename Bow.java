@@ -8,7 +8,6 @@ public class Bow
 		projectile[1]=y;
 		d=dir;
 		PD.ad=dir;
-		BD.ad=dir;
 	}
 	public static void Time()
 	{
@@ -91,29 +90,25 @@ public class Bow
 				d=-1;
 				WeaponMechanics.Kill();
 			}
-			else if(projectile[0]==3 && projectile[1]==6)
+			else if(projectile[0]==3 && projectile[1]==7)
 			{
 				if(WeaponMechanics.Projectile()==1)
 				{
+					Boss.setHealth(Boss.getHealth()-1);
 					d=-1;
 					WeaponMechanics.Kill();
 				}
-				if(WeaponMechanics.Projectile()==2)
+				else if(WeaponMechanics.Projectile()==2)
 				{
 					Boss.setHealth(0);
 					d=-1;
 					WeaponMechanics.Kill();
 				}			
 			}
-			else if(Ban.find(projectile[0],projectile[1])!=-1)//hits boss projectile
-			{
-				WeaponMechanics.Kill();
-			}
-			else if(SB.find(projectile[0],projectile[1])!=-1)//hits boss special projectile
-			{
-				WeaponMechanics.Kill();
-				SB.kill(SB.find(projectile[0],projectile[1]));
-			}
+			//else if(projectile[0]== && projectile[1]==)//hits boss projectile
+			//{
+				//WeaponMechanics.Kill();
+			//}
 		}
 	}
 }

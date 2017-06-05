@@ -2,7 +2,9 @@
 public class MovementspaceObject {
 //public void MovementspaceObject(){
 //}
-	static int x,y,player;
+	static int x = 6;
+	static int y = 6;
+	static int player;
 	static int health=6;//set health to an automatic 6 (3 hearts)
 	static String wep;//current weapon store
 	

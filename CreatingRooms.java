@@ -1,29 +1,37 @@
 import java.io.*;
 import java.util.*;
-import java.awt.Graphics;
 public class CreatingRooms 
 {
-	public static RoomObject up, down, left, right, start, current;{
+	public RoomObject up, left, right, start, current;
+	public Freebie f;
+	public meanie m;{
+	current = new RoomObject();
 	left = new RoomObject();
 	start = new RoomObject();
 	up = new RoomObject();
-	down = new RoomObject();
-	right = new RoomObject();
-	left.setJ(2);
-	right.setJ(3);
-	start.setJ(0);
-	up.setJ(1);}
-	public static Freebie f;
-	public static meanie m;
-	public static int[] item = new int[3];
-	public static int[] riddle = new int[3];
-	public static int random = 0;
-	public static int check=0;
-	public static File file = new File("Freebiesmeanies.txt");
-	public static void startup()
+	right = new RoomObject();}
+	public int[] item = new int[3];
+	public int[] riddle = new int[3];
+	public int random = 0;
+	public int check=0;
+	public File file = new File("Freebiesmeanies.txt");
+	public void CreatingRooms()
 	{
-		start.setFreebie(null);
-		start.setMeanie(null);
+		
+	}
+	/*public int getRoom()
+	{
+		return current;
+	}
+	public void setRoom(int current)
+	{
+		this.current = current;
+	}*/
+	public void startup()
+	{
+		start.MorF=1;
+		start.m.setX(0);
+		start.m.setY(0);
 		for(int c=0;c<3;c++)
 		{
 			random = (int)Math.round(Math.random()*6)+1;
@@ -70,6 +78,7 @@ public class CreatingRooms
 			{
 				f = new Freebie();
 				m = null;
+				check = 0;
 				try
 				{
 					Scanner input = new Scanner(file);
@@ -96,6 +105,7 @@ public class CreatingRooms
 			{
 				f = null;
 				m = new meanie();
+				check=1;
 				try
 				{
 					Scanner input = new Scanner(file);
@@ -117,14 +127,17 @@ public class CreatingRooms
 			case 0:
 				left.setFreebie(f);
 				left.setMeanie(m);
+				left.MorF=check;
 				break;
 			case 1:
 				up.setFreebie(f);
 				up.setMeanie(m);
+				up.MorF=check;
 				break;
 			case 2:
 				right.setFreebie(f);
 				right.setMeanie(m);
+				right.MorF=check;
 				break;
 			default:
 				break;
