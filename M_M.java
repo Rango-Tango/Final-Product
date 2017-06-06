@@ -129,12 +129,20 @@ public class M_M extends JFrame
 						{
 							M_M.r.current.m.setX(x2-1);
 						}
+						else
+						{
+							M_M.r.current.m.setX(x2+1);
+						}
 					}
 					else if (x2<x1)
 					{
-						if(x2!=6)
+						if(x2!=7)
 						{
 							M_M.r.current.m.setX(x2+1);
+						}
+						else
+						{
+							M_M.r.current.m.setX(x2-1);
 						}
 					}
 					XorY=1;
@@ -148,12 +156,21 @@ public class M_M extends JFrame
 						{
 							M_M.r.current.m.setY(y2-1);
 						}
-					}
-					else if (y2<y1)
-					{
-						if(y2!=6)
+						else
 						{
 							M_M.r.current.m.setY(y2+1);
+						}
+					}
+					
+					else if (y2<y1)
+					{
+						if(y2!=7)
+						{
+							M_M.r.current.m.setY(y2+1);
+						}
+						else
+						{
+							M_M.r.current.m.setY(y2-1);
 						}
 					}
 					XorY=0;
