@@ -12,9 +12,9 @@ public class WeaponMechanics
 		{
 			if(M_M.boss==0)
 			{
-				if(meanie.getX() == MovementspaceObject.getX()+1||meanie.getX() == MovementspaceObject.getX()-1||meanie.getX() == MovementspaceObject.getX())
+				if(M_M.r.current.m.getX() == MovementspaceObject.getX()+1||M_M.r.current.m.getX() == MovementspaceObject.getX()-1||M_M.r.current.m.getX() == MovementspaceObject.getX())
 				{
-					if(meanie.getY() == MovementspaceObject.getY()+1||meanie.getY() == MovementspaceObject.getY()-1||meanie.getY() == MovementspaceObject.getY())
+					if(M_M.r.current.m.getY() == MovementspaceObject.getY()+1||M_M.r.current.m.getY() == MovementspaceObject.getY()-1||M_M.r.current.m.getY() == MovementspaceObject.getY())
 					{
 						meanie.sethealth(meanie.gethealth()-1);
 					}
@@ -61,18 +61,25 @@ public class WeaponMechanics
 			else
 			{
 				bomb--;
-				if(meanie.getX() == bombx+1||meanie.getX() == bombx-1||meanie.getX() == bombx)
+				if(M_M.r.current.m.getX() == bombx+1||M_M.r.current.m.getX() == bombx-1||M_M.r.current.m.getX() == bombx)
 				{
-					if(meanie.getY() == bomby||meanie.getY() == bomby-1||meanie.getY() == bomby)
+					if(M_M.r.current.m.getY() == bomby||M_M.r.current.m.getY() == bomby-1||M_M.r.current.m.getY() == bomby)
 					{
 						meanie.sethealth(meanie.gethealth()-2);
 					}
 				}
-				else if(3 == bombx+1||3 == bombx-1||3 == bombx)
+				else
 				{
-					if(6 == bomby||6 == bomby-1||6 == bomby)
+					for(int c=0;c<SB.num;c++)
 					{
-						Boss.setHealth(Boss.getHealth()-1);
+						if(SB.ban.get(c).get(0) == bombx+1||SB.ban.get(c).get(0) == bombx-1||SB.ban.get(c).get(0) == bombx)
+						{
+							if(SB.ban.get(c).get(1) == bomby||SB.ban.get(c).get(1) == bomby-1||SB.ban.get(c).get(1) == bomby)
+							{
+								Boss.setHealth(Boss.getHealth()-1);
+								SB.Hit(SB.ban.get(c).get(0),SB.ban.get(c).get(1));
+							}
+						}
 					}
 				}
 			}
@@ -80,9 +87,9 @@ public class WeaponMechanics
 		}
 		else if(cw.equals("Shank"))
 		{
-			if(meanie.getX() == MovementspaceObject.getX()+1||meanie.getX() == MovementspaceObject.getX()-1||meanie.getX() == MovementspaceObject.getX())
+			if(M_M.r.current.m.getX() == MovementspaceObject.getX()+1||M_M.r.current.m.getX() == MovementspaceObject.getX()-1||M_M.r.current.m.getX() == MovementspaceObject.getX())
 			{
-				if(meanie.getY() == MovementspaceObject.getY()+1||meanie.getY() == MovementspaceObject.getY()-1||meanie.getY() == MovementspaceObject.getY())
+				if(M_M.r.current.m.getY() == MovementspaceObject.getY()+1||M_M.r.current.m.getY() == MovementspaceObject.getY()-1||M_M.r.current.m.getY() == MovementspaceObject.getY())
 				{
 					meanie.sethealth(meanie.gethealth()-2);
 				}
