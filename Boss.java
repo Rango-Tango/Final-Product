@@ -37,14 +37,7 @@ public class Boss
 					}
 				}
 				sc=0;
-				if(BD.cw=="Bow")
-				{
-					SB.add(r);
-				}
-				else if(BD.cw=="Bomb")
-				{
-					//insert bomb projectile creator here
-				}
+				SB.add(r);
 			}
 			else
 			{

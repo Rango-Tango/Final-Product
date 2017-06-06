@@ -39,7 +39,7 @@ public class BD extends JPanel {
 				grid.get(c).add(new JLabel());
 			}
 		}
-		for(int c=0;c<9;c++)
+		for(int c=0;c<8;c++)
 		{
 			heart.add(new JLabel());
 		}
@@ -88,7 +88,7 @@ public class BD extends JPanel {
 		{
 			heart.get(c).setIcon(new ImageIcon("G:\\Downloads\\Heart Right.png"));
 		}
-		for(int c=0;c<9;c++)
+		for(int c=0;c<8;c++)
 		{
 			add(heart.get(c), "cell " + c + " 0");
 		}
@@ -118,9 +118,12 @@ public class BD extends JPanel {
 	{
 		int x=MovementspaceObject.getX();
 		int y=MovementspaceObject.getY();
-		Bow.BossTime();
 		Ban.Time();
 		SB.Time();
+		if(BD.cw=="Bow")
+		{
+			Bow.BossTime();		
+		}
 		sc=Boss.shoot(sc);
 		arrow.set(0, Bow.getx());
 		arrow.set(1, Bow.gety());
@@ -177,18 +180,33 @@ public class BD extends JPanel {
 			{
 				if(SB.find(c,v)!=-1)
 				{
-					grid.get(c).get(v).setIcon(new ImageIcon("G:\\Downloads\\Hit.png"));
+					if(cw=="Bow")
+					{
+						grid.get(c).get(v).setIcon(new ImageIcon("G:\\Downloads\\Hit.png"));
+					}
+					else
+					{
+						grid.get(c).get(v).setIcon(new ImageIcon("G:\\Downloads\\Hit 2.png"));
+					}
 				}
 			}
 		}
-		grid.get(3).get(6).setIcon(new ImageIcon("G:\\Downloads\\Harambe.png"));
-	}
-	public static void Health(int h)
-	{
-		health=h;
-		for(int x=health-h;x!=0;x--)
+		if(MovementspaceObject.health!=health)
 		{
-			heart.remove(heart.size());
+			for(int c=health;c!=0;c--)
+			{
+				if(MovementspaceObject.health<0)
+				{
+					//dead
+				}
+				else if(MovementspaceObject.health<c)
+				{
+					heart.get(heart.size()-1).setIcon(null);
+					heart.remove(heart.size()-1);
+				}
+			}
+			health=MovementspaceObject.health;
 		}
+		grid.get(3).get(6).setIcon(new ImageIcon("G:\\Downloads\\Harambe.png"));
 	}
 }

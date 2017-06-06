@@ -2,11 +2,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.CardLayout;
-public class M_M 
+import java.awt.Dimension;
+import java.awt.Graphics;
+public class M_M extends JFrame
 {
 	static PD pd=new PD();
 	private static JPanel contentPane;
@@ -16,11 +19,12 @@ public class M_M
 	static JFrame bossframe=new JFrame();
 	public static CM cm;
 	public static Toggle tog=new Toggle();
-	public static PlayerMovement move=new PlayerMovement();
 	static int boss=0;
+	public static PlayerMovement move=new PlayerMovement();
+	public static CreatingRooms r = new CreatingRooms();
 	public static void main(String[] args)
 	{
-
+		r.startup();
 		menuframe.setVisible(true);
 		menuframe.setSize(500,500);
 		menuframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,7 +32,7 @@ public class M_M
 		bossframe.setSize(500,500);
 		bossframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		frame.setSize(500,500);
+		frame.setSize(500,450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(false);
 		cm=new CM();
@@ -42,7 +46,9 @@ public class M_M
 		contentPane.add(cm);
 		panel.setBounds(5, 5, 472, 443);
 		panel.setLayout(null);
+		pd.setSize(new Dimension(500,450));
 		frame.add(pd);
+		frame.setResizable(false);
 		JLabel label = new JLabel("Hunt For Harambe");
 		label.setBounds(185, 36, 105, 16);
 		panel.add(label);
@@ -50,8 +56,6 @@ public class M_M
 		bossframe.setVisible(false);
 		JButton b1 = new JButton("Start");
 		b1.setBounds(185, 85, 105, 25);
-		meanie.x=4;
-		meanie.y=5;
 		b1.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
@@ -88,6 +92,94 @@ public class M_M
 		panel.add(btnQuit);
 		b2.setVisible(true);
 		menuframe.repaint();
+		int x2;
+		int y2;
+		int x1;
+		int y1;
+		int XorY = 0;
+		meanie.meanieAI();
+		while(true)
+		{
+			//System.out.println("hello");
+			x1 = MovementspaceObject.getX();
+			y1 = MovementspaceObject.getY();
+			if(x1==M_M.r.current.m.getX()&&y1==M_M.r.current.m.getY())
+			{
+				meanie.meanieAI();
+			}
+			else if(r.current.ifMeanie())
+			{
+				//System.out.println("working");
+				try
+				{
+
+					Thread.sleep(500);
+				}
+				catch(InterruptedException o)
+				{
+					//System.out.println("error");
+				}
+
+				x2 = M_M.r.current.m.getX();
+				y2=  M_M.r.current.m.getY();
+				if(XorY==0)
+				{
+					//System.out.println("moving x");
+					if (x2>x1)
+					{
+						if(x2!=0)
+						{
+							M_M.r.current.m.setX(x2-1);
+						}
+						else
+						{
+							M_M.r.current.m.setX(x2+1);
+						}
+					}
+					else if (x2<x1)
+					{
+						if(x2!=7)
+						{
+							M_M.r.current.m.setX(x2+1);
+						}
+						else
+						{
+							M_M.r.current.m.setX(x2-1);
+						}
+					}
+					XorY=1;
+				}
+				else if(XorY==1)
+				{
+					//	System.out.println("moving y");
+					if (y2>y1)
+					{
+						if(y2!=0)
+						{
+							M_M.r.current.m.setY(y2-1);
+						}
+						else
+						{
+							M_M.r.current.m.setY(y2+1);
+						}
+					}
+
+					else if (y2<y1)
+					{
+						if(y2!=7)
+						{
+							M_M.r.current.m.setY(y2+1);
+						}
+						else
+						{
+							M_M.r.current.m.setY(y2-1);
+						}
+					}
+					XorY=0;
+				}
+				PD.Refresh();
+			}
+		}
 	}
 	public static void rs()
 	{
@@ -107,10 +199,30 @@ public class M_M
 		boss=1;
 		BD.Refresh();
 	}
+
+	public static void nextRoom()
+	{
+		pd.repaint();
+	}
+
 	public static void win()
 	{
 		System.out.println("You Win");
 		System.exit(0);
+	}
+	public static void GO()
+	{
+		frame.setVisible(false);
+		bossframe.setVisible(false);
+		JFrame lose=new JFrame();
+		JPanel loss=new JPanel();
+		lose.add(loss);
+		JLabel go=new JLabel();
+		go.setIcon(new ImageIcon("G:\\Downloads\\Game Over Screen (1)"));
+		loss.add(go);
+		go.setVisible(true);
+		loss.setVisible(true);
+		lose.setVisible(true);
 	}
 }
 

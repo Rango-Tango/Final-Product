@@ -95,6 +95,7 @@ public class Bow
 			{
 				if(WeaponMechanics.Projectile()==1)
 				{
+					Boss.setHealth(Boss.getHealth()-1);
 					d=-1;
 					WeaponMechanics.Kill();
 				}
@@ -111,8 +112,8 @@ public class Bow
 			}
 			else if(SB.find(projectile[0],projectile[1])!=-1)//hits boss special projectile
 			{
+				SB.Hit(projectile[0],projectile[1]);
 				WeaponMechanics.Kill();
-				SB.kill(SB.find(projectile[0],projectile[1]));
 			}
 		}
 	}
