@@ -5,12 +5,16 @@ public class SB
 	static int num=0;
 	static int hit=0;
 	static int pos=7;
+	static int poss=7;
 	public static void add(int x)
 	{
-		ban.add(new ArrayList<Integer>());
-		ban.get(num).add(x);
-		ban.get(num).add(5);
-		num++;
+		if(BD.cw.equals("Bow")||BD.cw.equals("Bomb"))
+		{
+			ban.add(new ArrayList<Integer>());
+			ban.get(num).add(x);
+			ban.get(num).add(5);
+			num++;
+		}
 	}
 	public static void Time()
 	{
@@ -18,17 +22,24 @@ public class SB
 		{
 			ban.get(c).set(1,ban.get(c).get(1)-1);
 		}
-		for(int c=num-1;c>0;c--)
+		for(int c=num-1;c>=0;c--)
 		{
 			if(MovementspaceObject.getX()==ban.get(c).get(0) && MovementspaceObject.getY()==ban.get(c).get(1))
 			{
-				MovementspaceObject.health=MovementspaceObject.health-2;
-				ban.remove(c);
-				num--;
+				if(BD.cw.equals("Bow"))
+				{
+					MovementspaceObject.health=MovementspaceObject.health-2;
+				}
+				else
+				{
+					MovementspaceObject.health=MovementspaceObject.health-4;
+				}
+				SB.kill(c);
 			}
 			else if(ban.get(c).get(0)==Bow.getx()&&ban.get(c).get(1)==Bow.gety())
 			{
 				pos=Bow.gety();
+				poss=Bow.getx();
 				WeaponMechanics.Kill();
 				hit=1;	
 			}
@@ -39,12 +50,9 @@ public class SB
 		}
 		if(hit==1)
 		{
-			SB.Hit(pos);
+			SB.Hit(poss,pos);
+			pos=7;
 		}
-	}
-	public static ArrayList<ArrayList<Integer>> Array()
-	{
-		return ban;
 	}
 	public static void kill(int n)
 	{
@@ -66,21 +74,33 @@ public class SB
 		}
 		return -1;
 	}
-	public static void Hit(int p)
+	public static void Hit(int x,int y)
 	{
-		for(int c=0;c<7;c++)
+		if(BD.cw=="Bow"||BD.cw=="Peanuts")
 		{
-			if(Ban.find(c,p)!=-1)
+			for(int c=0;c<7;c++)
 			{
-				Ban.kill((Ban.find(c,p)));
+				if(x!=c)
+				{
+					Ban.kill((Ban.find(c,y)));
+				}
+				else
+				{
+					ban.remove(SB.find(x,y));
+					num--;
+				}
 			}
-			else
+			hit=0;
+		}
+		else
+		{
+			int win=SB.find(x,y);
+			if(win!=-1)
 			{
-				ban.remove(SB.find(c,p));
-				num--;
+				ban.get(win).set(0,3);
+				ban.get(win).set(1,5);
+				hit=0;
 			}
 		}
-		hit=0;
-		p=7;
 	}
 }

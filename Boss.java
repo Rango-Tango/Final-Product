@@ -15,7 +15,6 @@ public class Boss
 		{
 			M_M.win();
 		}
-		MovementspaceObject.setY(0);
 	}
 	public static int getHealth()
 	{
@@ -31,20 +30,13 @@ public class Boss
 				int r=(int)(ran*6);
 				for(int c=0;c<7;c++)
 				{
-					if(r!=c)
+					if(r!=c&&!BD.cw.equals("Bomb"))
 					{
 						Ban.add(c);
 					}
 				}
 				sc=0;
-				if(BD.cw=="Bow")
-				{
-					SB.add(r);
-				}
-				else if(BD.cw=="Bomb")
-				{
-					//insert bomb projectile creator here
-				}
+				SB.add(r);
 			}
 			else
 			{
@@ -59,7 +51,7 @@ public class Boss
 				int r=(int)(ran*6);
 				for(int c=0;c<7;c++)
 				{
-					if(r!=c)
+					if(r!=c&&!BD.cw.equals("Bomb"))
 					{
 						Ban.add(c);
 					}

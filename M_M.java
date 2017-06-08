@@ -2,6 +2,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,7 @@ public class M_M extends JFrame
 	static JFrame bossframe=new JFrame();
 	public static CM cm;
 	public static Toggle tog=new Toggle();
+	static int boss=-1;
 	public static PlayerMovement move=new PlayerMovement();
 	public static CreatingRooms r = new CreatingRooms();
 	public static void main(String[] args)
@@ -59,8 +61,8 @@ public class M_M extends JFrame
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				menuframe.setVisible(false);
-				menuframe=null;
 				frame.setVisible(true);
+				boss=0;
 				PD.Refresh();
 			}
 		});
@@ -96,7 +98,7 @@ public class M_M extends JFrame
 		int y1;
 		int XorY = 0;
 		meanie.meanieAI();
-		while(true)
+		while(boss==0)
 		{
 			//System.out.println("hello");
 			x1 = MovementspaceObject.getX();
@@ -110,7 +112,7 @@ public class M_M extends JFrame
 				//System.out.println("working");
 				try
 				{
-					
+
 					Thread.sleep(500);
 				}
 				catch(InterruptedException o)
@@ -149,7 +151,7 @@ public class M_M extends JFrame
 				}
 				else if(XorY==1)
 				{
-				//	System.out.println("moving y");
+					//	System.out.println("moving y");
 					if (y2>y1)
 					{
 						if(y2!=0)
@@ -161,7 +163,7 @@ public class M_M extends JFrame
 							M_M.r.current.m.setY(y2+1);
 						}
 					}
-					
+
 					else if (y2<y1)
 					{
 						if(y2!=7)
@@ -191,15 +193,36 @@ public class M_M extends JFrame
 		bossframe.add(bd);
 		frame.setVisible(false);
 		bossframe.setVisible(true);
-		tog=null;
-		pd=null;
-		move=null;
+		boss=1;
 		BD.Refresh();
 	}
 
 	public static void nextRoom()
 	{
 		pd.repaint();
+	}
+
+	public static void win()
+	{
+		System.out.println("You Win");
+		System.exit(0);
+	}
+	public static void GO()
+	{
+		frame.setVisible(false);
+		bossframe.setVisible(false);
+		JFrame lose=new JFrame();
+		GameOver loss=new GameOver();
+		lose.add(loss);
+		lose.setSize(400,400);
+		lose.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		lose.setVisible(true);
+		loss.setVisible(true);
+	}
+	public static void Menu()
+	{
+		boss=-1;
+		menuframe.setVisible(true);
 	}
 }
 
