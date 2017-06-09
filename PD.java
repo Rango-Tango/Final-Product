@@ -4,7 +4,6 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.*;
-import javax.swing.JPanel;
 public class PD extends JPanel 
 {
 	/**
@@ -20,7 +19,7 @@ public class PD extends JPanel
 	static Graphics w;
 	static meanie mOne = new meanie();
 	meanie m = new meanie();
-	static JLabel weap=new JLabel();	//bomb and arrow values: 0 is x and 1 is y.
+	static JLabel weap=new JLabel();
 	/**
 	 * Create the panel.
 	 */
@@ -81,18 +80,18 @@ public class PD extends JPanel
 		}
 		for(int c=0;c<7;c=c+2)
 		{
-			heart.get(c).setIcon(new ImageIcon("Heart Left.png"));
+			heart.get(c).setIcon(new ImageIcon("G:\\Downloads\\Heart Left.png"));
 		}
 		for(int c=1;c<8;c=c+2)
 		{
-			heart.get(c).setIcon(new ImageIcon("Heart Right.png"));
+			heart.get(c).setIcon(new ImageIcon("G:\\Downloads\\Heart Right.png"));
 		}
-		for(int c=0;c<9;c++)
+		for(int c=0;c<8;c++)
 		{
 			add(heart.get(c), "cell " + c + " 0");
 		}
 		add(weap, "cell 9 0");
-		weap.setIcon(new ImageIcon("New Piskel (4).png"));
+		weap.setIcon(new ImageIcon("G:\\Downloads\\New Piskel (4).png"));
 	}
 	public static void Refresh()
 	{
@@ -116,80 +115,83 @@ public class PD extends JPanel
 		arrow.set(1, Bow.gety());
 		bomb.set(0, WeaponMechanics.bombx);
 		bomb.set(1, WeaponMechanics.bomby);
-		Transtion.roomTransition(x1,y1);
-		M_M.nextRoom();
 		for(int c=0;c<7;c++)
 		{
 			for(int v=0;v<7;v++)
 			{
-				grid.get(c).get(v).setIcon(new ImageIcon("Blank.png"));
+				grid.get(c).get(v).setIcon(new ImageIcon("G:\\Downloads\\Blank.png"));
 			}
 		}
 		if(x2!=7)
 		{
-			if (y2!=7)
-			{
-			grid.get(x2).get(y2).setIcon(new ImageIcon("New Piskel.png"));
+			grid.get(x2).get(y2).setIcon(new ImageIcon("G:\\Downloads\\New Piskel.png"));
 		}
-			}
-		grid.get(x1).get(y1).setIcon(new ImageIcon("New Piskel (1).png"));
+		grid.get(x1).get(y1).setIcon(new ImageIcon("G:\\Downloads\\New Piskel (1).png"));
 		if(WeaponMechanics.Projectile()==2)
 		{
-			grid.get(arrow.get(0)).get(arrow.get(1)).setIcon(new ImageIcon("Peanut.png"));
+			grid.get(arrow.get(0)).get(arrow.get(1)).setIcon(new ImageIcon("G:\\Downloads\\Peanut.png"));
 		}
 		else if(WeaponMechanics.Projectile()==0)
 		{	
 		}
 		else if(ad==0)
 		{
-			grid.get(arrow.get(0)).get(arrow.get(1)).setIcon(new ImageIcon("Arrow Up.png"));
+			grid.get(arrow.get(0)).get(arrow.get(1)).setIcon(new ImageIcon("G:\\Downloads\\Arrow Up.png"));
 		}
 		else if(ad==1)
 		{
-			grid.get(arrow.get(0)).get(arrow.get(1)).setIcon(new ImageIcon("Arrow Left.png"));
+			grid.get(arrow.get(0)).get(arrow.get(1)).setIcon(new ImageIcon("G:\\Downloads\\Arrow Left.png"));
 		}
 		else if(ad==2)
 		{
-			grid.get(arrow.get(0)).get(arrow.get(1)).setIcon(new ImageIcon("Arrow Down.png"));
+			grid.get(arrow.get(0)).get(arrow.get(1)).setIcon(new ImageIcon("G:\\Downloads\\Arrow Down.png"));
 		}
 		else if(ad==3)
 		{
-			grid.get(arrow.get(0)).get(arrow.get(1)).setIcon(new ImageIcon("Arrow Right.png"));
+			grid.get(arrow.get(0)).get(arrow.get(1)).setIcon(new ImageIcon("G:\\Downloads\\Arrow Right.png"));
 		}
 		if(WeaponMechanics.bomb==1)
 		{		
-			grid.get(bomb.get(0)).get(bomb.get(1)).setIcon(new ImageIcon("New Piskel (5).png"));
+			grid.get(bomb.get(0)).get(bomb.get(1)).setIcon(new ImageIcon("G:\\Downloads\\New Piskel (5).png"));
+		}
+		if(MovementspaceObject.health!=health)
+		{
+			for(int c=health;c!=0;c--)
+			{
+				if(MovementspaceObject.health<0)
+				{
+					//dead
+				}
+				else if(MovementspaceObject.health<c)
+				{
+					heart.get(heart.size()-1).setIcon(null);
+					heart.remove(heart.size()-1);
+				}
+			}
+			health=MovementspaceObject.health;
 		}
 	}
 	public static void Weaponset(String cw)
 	{
 		if(cw.equals("Sword"))
 		{
-			weap.setIcon(new ImageIcon("New Piskel (4).png"));
+			weap.setIcon(new ImageIcon("G:\\Downloads\\New Piskel (4).png"));
 		}
 		else if(cw.equals("Bow"))
 		{
-			weap.setIcon(new ImageIcon("New Piskel (3).png"));
+			weap.setIcon(new ImageIcon("G:\\Downloads\\New Piskel (3).png"));
 		}
 		else if(cw.equals("Bomb"))
 		{
-			weap.setIcon(new ImageIcon("New Piskel (5).png"));
+			weap.setIcon(new ImageIcon("G:\\Downloads\\New Piskel (5).png"));
 		}
 		else if(cw.equals("Shank"))
 		{
-			weap.setIcon(new ImageIcon("New Piskel (2).png"));
+			weap.setIcon(new ImageIcon("G:\\Downloads\\Shank.png"));
 		}
 		else if(cw.equals("Peanuts"))
 		{
-			weap.setIcon(new ImageIcon("Peanut.png"));
-		}
-	}
-	public static void Health(int h)
-	{
-		health=h;
-		for(int x=health-h;x!=0;x--)
-		{
-			heart.remove(heart.size());
+			weap.setIcon(new ImageIcon("G:\\Downloads\\Peanut.png"));
 		}
 	}
 	public void paintComponent(Graphics g)

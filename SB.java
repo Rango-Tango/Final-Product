@@ -26,7 +26,7 @@ public class SB
 		{
 			if(MovementspaceObject.getX()==ban.get(c).get(0) && MovementspaceObject.getY()==ban.get(c).get(1))
 			{
-				if(BD.cw.equals("Bow"))
+				if(BD.cw.equals("Bow")||BD.cw.equals("Peanuts"))
 				{
 					MovementspaceObject.health=MovementspaceObject.health-2;
 				}
@@ -98,7 +98,7 @@ public class SB
 			if(win!=-1)
 			{
 				ban.get(win).set(0,3);
-				ban.get(win).set(1,5);
+				ban.get(win).set(1,6);
 				hit=0;
 			}
 		}
