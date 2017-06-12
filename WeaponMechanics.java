@@ -10,25 +10,56 @@ public class WeaponMechanics
 	{
 		if(cw.equals("Sword"))
 		{
-			if(M_M.boss==0)
+			switch(M_M.r.room)
 			{
-				if(meanie.getX() == MovementspaceObject.getX()+1||meanie.getX() == MovementspaceObject.getX()-1||meanie.getX() == MovementspaceObject.getX())
+			case 0:
+				if(M_M.r.start.m.getX() == MovementspaceObject.getX()+1||M_M.r.start.m.getX() == MovementspaceObject.getX()-1||M_M.r.start.m.getX() == MovementspaceObject.getX())
 				{
-					if(meanie.getY() == MovementspaceObject.getY()+1||meanie.getY() == MovementspaceObject.getY()-1||meanie.getY() == MovementspaceObject.getY())
+					if(M_M.r.start.m.getY() == MovementspaceObject.getY()+1||M_M.r.start.m.getY() == MovementspaceObject.getY()-1||M_M.r.start.m.getY() == MovementspaceObject.getY())
 					{
-						meanie.sethealth(meanie.gethealth()-1);
+						M_M.r.start.m.hitM(cw);
 					}
 				}
-			}
-			else if(M_M.boss==1)
-			{
+				break;
+			case 1:
+				if(M_M.r.left.m.getX() == MovementspaceObject.getX()+1||M_M.r.left.m.getX() == MovementspaceObject.getX()-1||M_M.r.left.m.getX() == MovementspaceObject.getX())
+				{
+					if(M_M.r.left.m.getY() == MovementspaceObject.getY()+1||M_M.r.left.m.getY() == MovementspaceObject.getY()-1||M_M.r.left.m.getY() == MovementspaceObject.getY())
+					{
+						M_M.r.left.m.hitM(cw);
+					}
+				}
+				break;
+			case 2:
+				if(M_M.r.right.m.getX() == MovementspaceObject.getX()+1||M_M.r.right.m.getX() == MovementspaceObject.getX()-1||M_M.r.right.m.getX() == MovementspaceObject.getX())
+				{
+					if(M_M.r.right.m.getY() == MovementspaceObject.getY()+1||M_M.r.right.m.getY() == MovementspaceObject.getY()-1||M_M.r.right.m.getY() == MovementspaceObject.getY())
+					{
+						M_M.r.right.m.hitM(cw);
+					}
+				}
+				break;
+			case 3:
+				if(M_M.r.up.m.getX() == MovementspaceObject.getX()+1||M_M.r.up.m.getX() == MovementspaceObject.getX()-1||M_M.r.up.m.getX() == MovementspaceObject.getX())
+				{
+					if(M_M.r.up.m.getY() == MovementspaceObject.getY()+1||M_M.r.up.m.getY() == MovementspaceObject.getY()-1||M_M.r.up.m.getY() == MovementspaceObject.getY())
+					{
+						M_M.r.up.m.hitM(cw);
+					}
+				}
+				break;
+			case 4:
 				if(3==MovementspaceObject.getX()+1||3==MovementspaceObject.getX()-1||3==MovementspaceObject.getX())
 				{
 					if(6==MovementspaceObject.getY()+1||6==MovementspaceObject.getY()-1||6==MovementspaceObject.getY())
 					{
 						Boss.setHealth(Boss.getHealth()-1);
+						MovementspaceObject.setY(0);
 					}
 				}
+				break;
+			default:
+				break;
 			}
 
 		}
@@ -36,7 +67,7 @@ public class WeaponMechanics
 		{
 			if(proj==0)
 			{
-				if(M_M.boss==0)
+				if(M_M.r.room==4)
 				{
 					proj=1;
 					Bow.Shoot(MovementspaceObject.getX(),MovementspaceObject.getY(),PlayerMovement.Getd());
@@ -60,46 +91,137 @@ public class WeaponMechanics
 			}
 			else
 			{
+				int win=0;
+				int b =0;
 				bomb--;
-				if(meanie.getX() == bombx+1||meanie.getX() == bombx-1||meanie.getX() == bombx)
+				switch(M_M.r.room)
 				{
-					if(meanie.getY() == bomby||meanie.getY() == bomby-1||meanie.getY() == bomby)
+				case 0:
+					if(M_M.r.start.m.getX() == bombx+1||M_M.r.start.m.getX() == bombx-1||M_M.r.start.m.getX() == bombx)
 					{
-						meanie.sethealth(meanie.gethealth()-2);
+						if(M_M.r.start.m.getY() == bomby||M_M.r.start.m.getY() == bomby-1||M_M.r.start.m.getY() == bomby)
+						{
+							M_M.r.start.m.sethealth(M_M.r.start.m.gethealth()-2);
+						}
 					}
-				}
-				else if(3 == bombx+1||3 == bombx-1||3 == bombx)
-				{
-					if(6 == bomby||6 == bomby-1||6 == bomby)
+					break;
+				case 1:
+					if(M_M.r.left.m.getX() == bombx+1||M_M.r.left.m.getX() == bombx-1||M_M.r.left.m.getX() == bombx)
+					{
+						if(M_M.r.left.m.getY() == bomby||M_M.r.left.m.getY() == bomby-1||M_M.r.left.m.getY() == bomby)
+						{
+							M_M.r.left.m.sethealth(M_M.r.left.m.gethealth()-2);
+						}
+					}
+					break;
+				case 2:
+					if(M_M.r.right.m.getX() == bombx+1||M_M.r.right.m.getX() == bombx-1||M_M.r.right.m.getX() == bombx)
+					{
+						if(M_M.r.right.m.getY() == bomby||M_M.r.right.m.getY() == bomby-1||M_M.r.right.m.getY() == bomby)
+						{
+							M_M.r.right.m.sethealth(M_M.r.right.m.gethealth()-2);
+						}
+					}
+					break;
+				case 3:
+					if(M_M.r.up.m.getX() == bombx+1||M_M.r.up.m.getX() == bombx-1||M_M.r.up.m.getX() == bombx)
+					{
+						if(M_M.r.up.m.getY() == bomby||M_M.r.up.m.getY() == bomby-1||M_M.r.up.m.getY() == bomby)
+						{
+							M_M.r.up.m.sethealth(M_M.r.up.m.gethealth()-2);
+						}
+					}
+					break;
+				case 4:
+					for(int v=bombx-1;v<bombx+2;v++)
+					{				
+						if(SB.find(v,bomby+1)!=-1||SB.find(v,bomby)!=-1||SB.find(v,bomby-1)!=-1)
+						{
+							win=1;
+							b=v;
+						}
+					}
+					if(win==1)
 					{
 						Boss.setHealth(Boss.getHealth()-1);
+						if(SB.find(b,bomby+1)!=-1)
+						{
+							SB.Hit(b,bomby+1);	
+						}
+						else if(SB.find(b,bomby)!=-1)
+						{
+							SB.Hit(b,bomby);	
+						}
+						else
+						{
+							SB.Hit(b,bomby-1);	
+						}
 					}
+					break;
+				default:
+					break;
 				}
 			}
-			PD.Refresh();
 		}
 		else if(cw.equals("Shank"))
 		{
-			if(meanie.getX() == MovementspaceObject.getX()+1||meanie.getX() == MovementspaceObject.getX()-1||meanie.getX() == MovementspaceObject.getX())
+			switch(M_M.r.room)
 			{
-				if(meanie.getY() == MovementspaceObject.getY()+1||meanie.getY() == MovementspaceObject.getY()-1||meanie.getY() == MovementspaceObject.getY())
+			case 0:
+				if(M_M.r.start.m.getX() == MovementspaceObject.getX()+1||M_M.r.start.m.getX() == MovementspaceObject.getX()-1||M_M.r.start.m.getX() == MovementspaceObject.getX())
 				{
-					meanie.sethealth(meanie.gethealth()-2);
+					if(M_M.r.start.m.getY() == MovementspaceObject.getY()+1||M_M.r.start.m.getY() == MovementspaceObject.getY()-1||M_M.r.start.m.getY() == MovementspaceObject.getY())
+					{
+						M_M.r.start.m.sethealth(M_M.r.start.m.gethealth()-2);
+					}
 				}
-			}
-			else if(3==MovementspaceObject.getX()+1||3==MovementspaceObject.getX()-1||3==MovementspaceObject.getX())
-			{
-				if(6==MovementspaceObject.getY()+1||6==MovementspaceObject.getY()-1||6==MovementspaceObject.getY())
+				break;
+			case 1:
+				if(M_M.r.left.m.getX() == MovementspaceObject.getX()+1||M_M.r.left.m.getX() == MovementspaceObject.getX()-1||M_M.r.left.m.getX() == MovementspaceObject.getX())
 				{
-					Boss.setHealth(Boss.getHealth()-1);
+					if(M_M.r.left.m.getY() == MovementspaceObject.getY()+1||M_M.r.left.m.getY() == MovementspaceObject.getY()-1||M_M.r.left.m.getY() == MovementspaceObject.getY())
+					{
+						M_M.r.left.m.sethealth(M_M.r.left.m.gethealth()-2);
+					}
 				}
+				break;
+			case 2:
+				if(M_M.r.right.m.getX() == MovementspaceObject.getX()+1||M_M.r.right.m.getX() == MovementspaceObject.getX()-1||M_M.r.right.m.getX() == MovementspaceObject.getX())
+				{
+					if(M_M.r.right.m.getY() == MovementspaceObject.getY()+1||M_M.r.right.m.getY() == MovementspaceObject.getY()-1||M_M.r.right.m.getY() == MovementspaceObject.getY())
+					{
+						M_M.r.right.m.sethealth(M_M.r.right.m.gethealth()-2);
+					}
+				}
+				break;
+			case 3:
+				if(M_M.r.up.m.getX() == MovementspaceObject.getX()+1||M_M.r.up.m.getX() == MovementspaceObject.getX()-1||M_M.r.up.m.getX() == MovementspaceObject.getX())
+				{
+					if(M_M.r.up.m.getY() == MovementspaceObject.getY()+1||M_M.r.up.m.getY() == MovementspaceObject.getY()-1||M_M.r.up.m.getY() == MovementspaceObject.getY())
+					{
+						M_M.r.up.m.sethealth(M_M.r.up.m.gethealth()-2);
+					}
+				}
+				break;
+			case 4:
+				if(3==MovementspaceObject.getX()+1||3==MovementspaceObject.getX()-1||3==MovementspaceObject.getX())
+				{
+					if(6==MovementspaceObject.getY()+1||6==MovementspaceObject.getY()-1||6==MovementspaceObject.getY())
+					{
+						Boss.setHealth(Boss.getHealth()-1);
+						MovementspaceObject.setY(0);
+					}
+				}
+				break;
+			default:
+				break;
 			}
 		}
 		else	//peanuts!
 		{
 			if(proj==0)
 			{
-				if(M_M.boss==0)
+				if(M_M.r.room==4)
 				{
 					proj=2;
 					Bow.Shoot(MovementspaceObject.getX(),MovementspaceObject.getY(),PlayerMovement.Getd());
@@ -111,7 +233,7 @@ public class WeaponMechanics
 				}
 			}
 		}
-		if(M_M.boss==0)
+		if(M_M.r.room==0 || M_M.r.room==1 || M_M.r.room==2 || M_M.r.room==3)
 		{
 			PD.Refresh();
 		}

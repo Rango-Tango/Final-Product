@@ -17,11 +17,9 @@ public class BD extends JPanel {
 	static ArrayList<JLabel> heart=new ArrayList<JLabel>();
 	static ArrayList<Integer> bomb=new ArrayList<Integer>();
 	static ArrayList<Integer> arrow=new ArrayList<Integer>();
-	static ArrayList<ArrayList<Integer>> ban=new ArrayList<ArrayList<Integer>>();
 	static String cw=Toggle.CurWeap();
-	static int health=MovementspaceObject.health;
+	static int health=8;
 	static int ad=-1;
-	static int sc=0;
 	static JLabel weap=new JLabel();
 	public BD() 
 	{
@@ -107,7 +105,7 @@ public class BD extends JPanel {
 		}
 		else if(cw.equals("Shank"))
 		{
-			weap.setIcon(new ImageIcon("G:\\Downloads\\Shank.png"));
+			weap.setIcon(new ImageIcon("G:\\Downloads\\New Piskel (2).png"));
 		}
 		else if(cw.equals("Peanuts"))
 		{
@@ -119,9 +117,6 @@ public class BD extends JPanel {
 		int x=MovementspaceObject.getX();
 		int y=MovementspaceObject.getY();
 		Bow.BossTime();
-		Ban.Time();
-		SB.Time();
-		sc=Boss.shoot(sc);
 		arrow.set(0, Bow.getx());
 		arrow.set(1, Bow.gety());
 		bomb.set(0, WeaponMechanics.bombx);
@@ -133,6 +128,7 @@ public class BD extends JPanel {
 				grid.get(c).get(v).setIcon(new ImageIcon("G:\\Downloads\\Blank.png"));
 			}
 		}
+		grid.get(3).get(6).setIcon(new ImageIcon("G:\\Downloads\\Harambe.png"));
 		grid.get(x).get(y).setIcon(new ImageIcon("G:\\Downloads\\New Piskel (1).png"));
 		if(WeaponMechanics.Projectile()==2)
 		{
@@ -161,27 +157,6 @@ public class BD extends JPanel {
 		{		
 			grid.get(bomb.get(0)).get(bomb.get(1)).setIcon(new ImageIcon("G:\\Downloads\\New Piskel (5).png"));
 		}
-		for(int c=0;c<7;c++)
-		{
-			for(int v=0;v<7;v++)
-			{
-				if(Ban.find(c,v)!=-1)
-				{
-					grid.get(c).get(v).setIcon(new ImageIcon("G:\\Downloads\\Banana.png"));
-				}
-			}
-		}
-		for(int c=0;c<7;c++)
-		{
-			for(int v=0;v<7;v++)
-			{
-				if(SB.find(c,v)!=-1)
-				{
-					grid.get(c).get(v).setIcon(new ImageIcon("G:\\Downloads\\Hit.png"));
-				}
-			}
-		}
-		grid.get(3).get(6).setIcon(new ImageIcon("G:\\Downloads\\Harambe.png"));
 	}
 	public static void Health(int h)
 	{

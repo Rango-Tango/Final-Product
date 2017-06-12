@@ -1,32 +1,42 @@
 import java.io.*;
 import java.util.*;
-import java.awt.Graphics;
 public class CreatingRooms 
 {
-	public static RoomObject up, down, left, right, start, current;{
+	public RoomObject up, left, right, start;
+	int room;
+	String line;
+	Scanner input;
+	public meanie m;{
+	room=0;//0 start, 1 left, 2 right, 3 up
 	left = new RoomObject();
 	start = new RoomObject();
 	up = new RoomObject();
-	down = new RoomObject();
 	right = new RoomObject();
-	left.setJ(2);
-	right.setJ(3);
-	start.setJ(0);
-	up.setJ(1);}
-	public static Freebie f;
-	public static meanie m;
-	public static int[] item = new int[3];
-	public static int[] riddle = new int[3];
-	public static int random = 0;
-	public static int check=0;
-	public static File file = new File("Freebiesmeanies.txt");
-	public static void startup()
+	left.mean=1;
+	right.mean=1;
+	up.mean=1;
+	start.mean=0;}
+	public int[] item = new int[3];
+	public int random = 0;
+	public int check=0;
+	public File file = new File("FreebiesMeanies.txt");
+	public void CreatingRooms()
 	{
-		start.setFreebie(null);
-		start.setMeanie(null);
+		
+	}
+	/*public int getRoom()
+	{
+		return current;
+	}
+	public void setRoom(int current)
+	{
+		this.current = current;
+	}*/
+	public void startup()
+	{
 		for(int c=0;c<3;c++)
 		{
-			random = (int)Math.round(Math.random()*6)+1;
+			random = (int)Math.round(Math.random()*3)+1;
 			check=1;
 			for(int c2=0;c2<3;c2++)
 			{
@@ -46,90 +56,41 @@ public class CreatingRooms
 		}
 		for(int c=0;c<3;c++)
 		{
-			random = (int)Math.round(Math.random()*3)+1;
-			check=1;
-			for(int c2=0;c2<3;c2++)
-			{
-				if(random==riddle[c2])
-				{
-					check=0;
-				}
-			}
-			if(check==1)
-			{
-				riddle[c] = random;
-			}
-			else
-			{
-				c--;
-			}
-		}
-		for(int c=0;c<3;c++)
-		{
-			if(Math.round(Math.random())+1==1)
-			{
-				f = new Freebie();
-				m = null;
-				try
-				{
-					Scanner input = new Scanner(file);
-					for(int c2=0;c2<item[c]-1;c2++)
-					{
-						input.nextLine();
-					}
-					f.setItem(input.nextLine());
-					input = new Scanner(file);
-					for(int c2=0;c2<riddle[c]+6;c2++)
-					{
-						input.nextLine();
-					}
-					f.setRiddle(input.nextLine());
-					f.setAnswer(input.nextLine());
-					f.setX(4);
-					f.setY(4);
-				}
-				catch(IOException a)
-				{
-				}
-			}
-			else
-			{
-				f = null;
 				m = new meanie();
+				check=1;
 				try
 				{
-					Scanner input = new Scanner(file);
+					input = new Scanner(file);
 					for(int c2=0;c2<item[c]-1;c2++)
 					{
 						input.nextLine();
 					}
-					m.setItem(input.nextLine());
-					m.setX(4);
-					m.setY(4);
+					line = input.nextLine();
+					m.setItem(line);
+					m.setX(3);
+					m.setY(3);
 					m.sethealth(3);
+					input.close();
 				}
 				catch(IOException a)
 				{
+					System.out.println("not working");
 				}
-			}
 			switch(c)
 			{
 			case 0:
-				left.setFreebie(f);
 				left.setMeanie(m);
 				break;
 			case 1:
-				up.setFreebie(f);
 				up.setMeanie(m);
 				break;
 			case 2:
-				right.setFreebie(f);
 				right.setMeanie(m);
 				break;
 			default:
 				break;
 			}
 		}
-		current = start;
+		room=0;
 	}
 }

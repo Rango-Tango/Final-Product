@@ -11,55 +11,55 @@ public class PlayerMovement
 			{
 				if(e.getKeyCode()==37)//left arrow key pressed
 				{
-					if(MovementspaceObject.getX()>0)
+					if(MovementspaceObject.getX()==0 && MovementspaceObject.getY()==3 &&(M_M.r.room==0 || M_M.r.room==2))
+					{
+						Transtion.roomTransition(0, 3);
+					}
+					else if(MovementspaceObject.getX()>0)
 					{
 						MovementspaceObject.setX(MovementspaceObject.getX()-1);
 						d=1;
-						Bow.Time();
-						PD.Refresh();
 					}
 				}
 				else if(e.getKeyCode()==38)//up arrow key pressed
 				{
-					if(MovementspaceObject.getY()<6)
+					if(MovementspaceObject.getX()==3 && MovementspaceObject.getY()==6 && M_M.r.room==0)
+					{
+						Transtion.roomTransition(3, 6);
+					}
+
+					else if(MovementspaceObject.getY()<6)
 					{
 						MovementspaceObject.setY(MovementspaceObject.getY()+1);
 						d=0;
-						Bow.Time();
-						PD.Refresh();
 					}
 				}
 				else if(e.getKeyCode()==39)//right arrow key pressed
 				{
-					if(MovementspaceObject.getX()<6)
+					if(MovementspaceObject.getX()==6 && MovementspaceObject.getY()==3 && (M_M.r.room==1 || M_M.r.room==0))
+					{
+						Transtion.roomTransition(6, 3);
+					}
+					else if(MovementspaceObject.getX()<6)
 					{
 						MovementspaceObject.setX(MovementspaceObject.getX()+1);
 						d=3;
-						Bow.Time();
-						PD.Refresh();
-					}
-					else
-					{
-						if(MovementspaceObject.getY()==3)
-						{
-							//move to next room
-							//paint new background and create meanie/freebie
-							//move player to left side of the room
-							MovementspaceObject.setX(0);
-							MovementspaceObject.setY(3);
-						}
 					}
 				}
 				else if(e.getKeyCode()==40)//down arrow key pressed
 				{
-					if(MovementspaceObject.getY()>0)
+					if(MovementspaceObject.getX()==3 && MovementspaceObject.getY()==0 && M_M.r.room==3)
+					{
+						Transtion.roomTransition(3, 0);
+					}
+					else if(MovementspaceObject.getY()>0)
 					{
 						MovementspaceObject.setY(MovementspaceObject.getY()-1);
 						d=2;
-						Bow.Time();
-						PD.Refresh();
 					}
 				}
+				
+				PD.Refresh();
 			}
 			@Override
 			public void keyReleased(KeyEvent e) {

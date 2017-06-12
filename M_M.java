@@ -2,11 +2,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.CardLayout;
-public class M_M 
+import java.awt.Dimension;
+import java.awt.Graphics;
+public class M_M extends JFrame
 {
 	static PD pd=new PD();
 	private static JPanel contentPane;
@@ -16,11 +19,12 @@ public class M_M
 	static JFrame bossframe=new JFrame();
 	public static CM cm;
 	public static Toggle tog=new Toggle();
+	public static int check =0;
 	public static PlayerMovement move=new PlayerMovement();
-	static int boss=0;
+	public static CreatingRooms r = new CreatingRooms();
 	public static void main(String[] args)
 	{
-
+		r.startup();
 		menuframe.setVisible(true);
 		menuframe.setSize(500,500);
 		menuframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,7 +32,7 @@ public class M_M
 		bossframe.setSize(500,500);
 		bossframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		frame.setSize(500,500);
+		frame.setSize(500,450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(false);
 		cm=new CM();
@@ -42,7 +46,9 @@ public class M_M
 		contentPane.add(cm);
 		panel.setBounds(5, 5, 472, 443);
 		panel.setLayout(null);
+		pd.setSize(new Dimension(500,450));
 		frame.add(pd);
+		frame.setResizable(false);
 		JLabel label = new JLabel("Hunt For Harambe");
 		label.setBounds(185, 36, 105, 16);
 		panel.add(label);
@@ -50,14 +56,13 @@ public class M_M
 		bossframe.setVisible(false);
 		JButton b1 = new JButton("Start");
 		b1.setBounds(185, 85, 105, 25);
-		meanie.x=4;
-		meanie.y=5;
 		b1.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				menuframe.setVisible(false);
-				menuframe=null;
+				r.room=0;
+				r.startup(); 
 				frame.setVisible(true);
 				PD.Refresh();
 			}
@@ -88,6 +93,259 @@ public class M_M
 		panel.add(btnQuit);
 		b2.setVisible(true);
 		menuframe.repaint();
+		int x2;
+		int y2;
+		int x1;
+		int y1;
+		int XorY = 0;
+		while(true)
+		{
+			System.out.println("hello");
+			x1 = MovementspaceObject.getX();
+			y1 = MovementspaceObject.getY();
+			switch(M_M.r.room)
+			{
+			case 0:
+				break;
+			case 1:
+				System.out.println(r.left.mean);
+				if(r.left.ifMeanie())
+				{
+					if(x1==M_M.r.left.m.getX()&&y1==M_M.r.left.m.getY())
+					{
+						meanie.meanieAI();
+					}
+					System.out.println("working");
+					try
+					{
+						
+						Thread.sleep(500);
+					}
+					catch(InterruptedException o)
+					{
+						//System.out.println("error");
+					}
+
+					x2 = M_M.r.left.m.getX();
+					y2=  M_M.r.left.m.getY();
+					if(XorY==0)
+					{
+						System.out.println("moving x");
+						if (x2>x1)
+						{
+							if(x2!=0)
+							{
+								M_M.r.left.m.setX(x2-1);
+							}
+							else
+							{
+								M_M.r.left.m.setX(x2+1);
+							}
+						}
+						else if (x2<x1)
+						{
+							if(x2!=6)
+							{
+								M_M.r.left.m.setX(x2+1);
+							}
+							else
+							{
+								M_M.r.left.m.setX(x2-1);
+							}
+						}
+						XorY=1;
+					}
+					else if(XorY==1)
+					{
+					System.out.println("moving y");
+						if (y2>y1)
+						{
+							if(y2!=0)
+							{
+								M_M.r.left.m.setY(y2-1);
+							}
+							else
+							{
+								M_M.r.left.m.setY(y2+1);
+							}
+						}
+						
+						else if (y2<y1)
+						{
+							if(y2!=6)
+							{
+								M_M.r.left.m.setY(y2+1);
+							}
+							else
+							{
+								M_M.r.left.m.setY(y2-1);
+							}
+						}
+						XorY=0;
+					}
+					PD.Refresh();
+				}
+				break;
+			case 2:
+				if(r.right.ifMeanie())
+				{
+					if(x1==M_M.r.right.m.getX()&&y1==M_M.r.right.m.getY())
+					{
+						meanie.meanieAI();
+					}
+					//System.out.println("working");
+					try
+					{
+						
+						Thread.sleep(500);
+					}
+					catch(InterruptedException o)
+					{
+						//System.out.println("error");
+					}
+
+					x2 = M_M.r.right.m.getX();
+					y2=  M_M.r.right.m.getY();
+					if(XorY==0)
+					{
+						//System.out.println("moving x");
+						if (x2>x1)
+						{
+							if(x2!=0)
+							{
+								M_M.r.right.m.setX(x2-1);
+							}
+							else
+							{
+								M_M.r.right.m.setX(x2+1);
+							}
+						}
+						else if (x2<x1)
+						{
+							if(x2!=6)
+							{
+								M_M.r.right.m.setX(x2+1);
+							}
+							else
+							{
+								M_M.r.right.m.setX(x2-1);
+							}
+						}
+						XorY=1;
+					}
+					else if(XorY==1)
+					{
+					//System.out.println("moving y");
+						if (y2>y1)
+						{
+							if(y2!=0)
+							{
+								M_M.r.right.m.setY(y2-1);
+							}
+							else
+							{
+								M_M.r.right.m.setY(y2+1);
+							}
+						}
+						
+						else if (y2<y1)
+						{
+							if(y2!=6)
+							{
+								M_M.r.right.m.setY(y2+1);
+							}
+							else
+							{
+								M_M.r.right.m.setY(y2-1);
+							}
+						}
+						XorY=0;
+					}
+					PD.Refresh();
+				}
+				break;
+			case 3:
+				if(r.up.ifMeanie())
+				{
+					if(x1==M_M.r.up.m.getX()&&y1==M_M.r.up.m.getY())
+					{
+						meanie.meanieAI();
+					}
+					//System.out.println("working");
+					try
+					{
+						
+						Thread.sleep(500);
+					}
+					catch(InterruptedException o)
+					{
+						//System.out.println("error");
+					}
+
+					x2 = M_M.r.up.m.getX();
+					y2=  M_M.r.up.m.getY();
+					if(XorY==0)
+					{
+						//System.out.println("moving x");
+						if (x2>x1)
+						{
+							if(x2!=0)
+							{
+								M_M.r.up.m.setX(x2-1);
+							}
+							else
+							{
+								M_M.r.up.m.setX(x2+1);
+							}
+						}
+						else if (x2<x1)
+						{
+							if(x2!=6)
+							{
+								M_M.r.up.m.setX(x2+1);
+							}
+							else
+							{
+								M_M.r.up.m.setX(x2-1);
+							}
+						}
+						XorY=1;
+					}
+					else if(XorY==1)
+					{
+					//System.out.println("moving y");
+						if (y2>y1)
+						{
+							if(y2!=0)
+							{
+								M_M.r.up.m.setY(y2-1);
+							}
+							else
+							{
+								M_M.r.up.m.setY(y2+1);
+							}
+						}
+						
+						else if (y2<y1)
+						{
+							if(y2!=6)
+							{
+								M_M.r.up.m.setY(y2+1);
+							}
+							else
+							{
+								M_M.r.up.m.setY(y2-1);
+							}
+						}
+						XorY=0;
+					}
+					PD.Refresh();
+				}
+				break;
+			default:
+				break;
+			}
+		}
 	}
 	public static void rs()
 	{
@@ -101,16 +359,36 @@ public class M_M
 		bossframe.add(bd);
 		frame.setVisible(false);
 		bossframe.setVisible(true);
-		tog=null;
-		pd=null;
-		move=null;
-		boss=1;
+		r.room=4;
 		BD.Refresh();
 	}
+
+	public static void nextRoom()
+	{
+		pd.repaint();
+	}
+	
 	public static void win()
 	{
 		System.out.println("You Win");
 		System.exit(0);
+	}
+	public static void GO()
+	{
+		frame.setVisible(false);
+		bossframe.setVisible(false);
+		JFrame lose=new JFrame();
+		GameOver loss=new GameOver();
+		lose.add(loss);
+		lose.setSize(400,400);
+		lose.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		lose.setVisible(true);
+		loss.setVisible(true);
+	}
+	public static void Menu()
+	{
+		r.room=0;
+		menuframe.setVisible(true);
 	}
 }
 

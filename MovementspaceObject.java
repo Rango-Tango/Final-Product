@@ -1,15 +1,11 @@
+
 public class MovementspaceObject {
 //public void MovementspaceObject(){
 //}
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-	}
-	
-	static int x,y,player;
-	static int health=6;//set health to an automatic 6 (3 hearts)
+	static int x = 3;
+	static int y = 3;
+	static int player;
+	static int health=8;//set health to an automatic 6 (3 hearts)
 	static String wep;//current weapon store
 	
 	public static void setX(int here){
@@ -52,6 +48,10 @@ public static void setWeapon(String weapon)//set the players current weapon
 public static void healthDown(int hitType)//make different names for damadge amounts
 {
 	health=health-hitType;
+	if(health<=0)
+	{
+		//game over
+	}
 }
 
 public static void healthUp(int healthHelp)//int of how much health will increase by

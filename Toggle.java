@@ -2,17 +2,17 @@ import java.awt.event.*;
 import java.util.*;
 public class Toggle 
 {
-	String cw=new String("Sword");
+	static String cw=new String("Sword");
 	static int cwn=0;
-	static int weapons=5;
+	static int weapons=2;
 	static ArrayList<String> weap=new ArrayList<String>();
 	public Toggle()
 	{
 		weap.add("Sword");
-		weap.add("Bow");
+		//weap.add("Bow");
 		weap.add("Bomb");
-		weap.add("Shank");
-		weap.add("Peanuts");
+		//weap.add("Shank");
+		//weap.add("Peanuts");
 		M_M.frame.addKeyListener(new KeyListener()
 		{
 			@Override
@@ -36,6 +36,10 @@ public class Toggle
 				{
 					WeaponMechanics.Attack(cw);
 				}
+				else if(e.getKeyCode()==27)//esc
+				{
+					M_M.Boss();
+				}
 				MovementspaceObject.setWeapon(cw);
 			}
 			@Override
@@ -53,5 +57,9 @@ public class Toggle
 	{
 		weapons++;
 		weap.add(weapon);
+	}
+	public static String CurWeap()
+	{
+		return cw;
 	}
 }
