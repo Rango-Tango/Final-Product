@@ -28,11 +28,11 @@ public class SB
 			{
 				if(BD.cw.equals("Bow")||BD.cw.equals("Peanuts"))
 				{
-					MovementspaceObject.health=MovementspaceObject.health-2;
+					MovementspaceObject.setHealth(MovementspaceObject.health-2);
 				}
 				else
 				{
-					MovementspaceObject.health=MovementspaceObject.health-4;
+					MovementspaceObject.setHealth(MovementspaceObject.health-4);
 				}
 				SB.kill(c);
 			}
@@ -82,7 +82,10 @@ public class SB
 			{
 				if(x!=c)
 				{
-					Ban.kill((Ban.find(c,y)));
+					if(Ban.find(c, y)!=-1)
+					{
+						Ban.kill((Ban.find(c,y)));
+					}
 				}
 				else
 				{
