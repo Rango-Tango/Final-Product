@@ -1,7 +1,13 @@
-
 public class MovementspaceObject {
 //public void MovementspaceObject(){
 //}
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+	}
+	
 	static int x,y,player;
 	static int health=6;//set health to an automatic 6 (3 hearts)
 	static String wep;//current weapon store
