@@ -102,30 +102,29 @@ public class WeaponMechanics
 					}
 				}
 			}
-			if(M_M.boss==0)
-			{
-				PD.Refresh();
-			}
-			else
-			{
-				BD.Refresh(); 
-			}
 		}
 		else if(cw.equals("Shank"))
 		{
-			if(M_M.r.current.m.getX() == MovementspaceObject.getX()+1||M_M.r.current.m.getX() == MovementspaceObject.getX()-1||M_M.r.current.m.getX() == MovementspaceObject.getX())
+			if(M_M.boss==0)
 			{
-				if(M_M.r.current.m.getY() == MovementspaceObject.getY()+1||M_M.r.current.m.getY() == MovementspaceObject.getY()-1||M_M.r.current.m.getY() == MovementspaceObject.getY())
+
+				if(M_M.r.current.m.getX() == MovementspaceObject.getX()+1||M_M.r.current.m.getX() == MovementspaceObject.getX()-1||M_M.r.current.m.getX() == MovementspaceObject.getX())
 				{
-					meanie.sethealth(meanie.gethealth()-2);
+					if(M_M.r.current.m.getY() == MovementspaceObject.getY()+1||M_M.r.current.m.getY() == MovementspaceObject.getY()-1||M_M.r.current.m.getY() == MovementspaceObject.getY())
+					{
+						meanie.sethealth(meanie.gethealth()-2);
+					}
 				}
 			}
-			else if(3==MovementspaceObject.getX()+1||3==MovementspaceObject.getX()-1||3==MovementspaceObject.getX())
+			else if(M_M.boss==1)
 			{
-				if(6==MovementspaceObject.getY()+1||6==MovementspaceObject.getY()-1||6==MovementspaceObject.getY())
+				if(3==MovementspaceObject.getX()+1||3==MovementspaceObject.getX()-1||3==MovementspaceObject.getX())
 				{
-					Boss.setHealth(Boss.getHealth()-1);
-					MovementspaceObject.setY(0);
+					if(6==MovementspaceObject.getY()+1||6==MovementspaceObject.getY()-1||6==MovementspaceObject.getY())
+					{
+						Boss.setHealth(Boss.getHealth()-1);
+						MovementspaceObject.setY(0);
+					}
 				}
 			}
 		}

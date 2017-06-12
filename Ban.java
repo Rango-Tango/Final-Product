@@ -17,11 +17,11 @@ public class Ban
 		{
 			ban.get(c).set(1,ban.get(c).get(1)-1);
 		}
-		for(int c=num-1;c>0;c--)
+		for(int c=num-1;c>=0;c--)
 		{
 			if(MovementspaceObject.getX()==ban.get(c).get(0) && MovementspaceObject.getY()==ban.get(c).get(1))
 			{
-				MovementspaceObject.health=MovementspaceObject.health-2;
+				MovementspaceObject.setHealth(MovementspaceObject.health-2);
 				Ban.kill(c);
 			}
 			else if(ban.get(c).get(0)==Bow.getx()&&ban.get(c).get(1)==Bow.gety())

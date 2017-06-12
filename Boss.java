@@ -7,6 +7,14 @@ public class Boss
 	{
 		health=h;
 		System.out.println(health);
+		if(MovementspaceObject.getY()==6)
+		{
+			MovementspaceObject.setY(0);
+			if(!BD.cw.equals("Sword")&&!BD.cw.equals("Shank"))
+			{
+				MovementspaceObject.setHealth(MovementspaceObject.health-1);
+			}
+		}
 		if(health<=4)
 		{
 			stage=1;
