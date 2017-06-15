@@ -204,8 +204,15 @@ public class M_M extends JFrame
 
 	public static void win()
 	{
-		System.out.println("You Win");
-		System.exit(0);
+		frame.setVisible(false);
+		bossframe.setVisible(false);
+		JFrame lose=new JFrame();
+		Win loss=new Win();
+		lose.add(loss);
+		lose.setSize(400,400);
+		lose.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		lose.setVisible(true);
+		loss.setVisible(true);
 	}
 	public static void GO()
 	{
