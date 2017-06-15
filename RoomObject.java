@@ -1,35 +1,39 @@
 
 public class RoomObject 
-{
-	public Freebie f = new Freebie();
-	public meanie m = new meanie();
-	public int MorF;//0 freebie, 1 meanie
+{////////
+	public meanie mOne = new meanie();
+	public meanie mTwo=new meanie();
+	public meanie mThree=new meanie();
+	///////////
+	public int mean=0;
 	public void RoomObject()
 	{
 	}
-	public void setFreebie(Freebie f)
+	
+	public void setMeanie(meanie m,int room)
 	{
-		this.f = f;
+		if (room==1)
+		{m=mOne;}
+		else if(room==2)
+		{
+			m=mTwo;
+		}
+		else if(room==3)
+		{
+			m=mThree;
+		}
 	}
-	public void setMeanie(meanie m)
-	{
-		this.m = m;
-	}
-	public Freebie getFreebie()
-	{
-		return f;
-	}
-	public meanie getMeanie()
+	/*public meanie getMeanie(int room)
 	{
 		return m;
-	}
+	}*/
 	public boolean ifMeanie()
 	{
-		if(MorF==0)
+		if(mean==0)
 		{
 			return false;
 		}
-		else if(MorF==1)
+		else if(mean==1)
 		{
 			return true;
 		}
@@ -38,4 +42,5 @@ public class RoomObject
 			return false;
 		}
 	}
+	
 }

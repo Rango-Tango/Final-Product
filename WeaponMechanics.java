@@ -10,18 +10,36 @@ public class WeaponMechanics
 	{
 		if(cw.equals("Sword"))
 		{
-			if(M_M.boss==0)
+			switch(M_M.r.room)
 			{
-				if(M_M.r.current.m.getX() == MovementspaceObject.getX()+1||M_M.r.current.m.getX() == MovementspaceObject.getX()-1||M_M.r.current.m.getX() == MovementspaceObject.getX())
+			case 1:
+				if(meanie.x[1] == MovementspaceObject.getX()+1||meanie.x[1] == MovementspaceObject.getX()-1||meanie.x[1] == MovementspaceObject.getX())
 				{
-					if(M_M.r.current.m.getY() == MovementspaceObject.getY()+1||M_M.r.current.m.getY() == MovementspaceObject.getY()-1||M_M.r.current.m.getY() == MovementspaceObject.getY())
+					if(meanie.y[1] == MovementspaceObject.getY()+1||meanie.y[1] == MovementspaceObject.getY()-1||meanie.y[1] == MovementspaceObject.getY())
 					{
-						meanie.sethealth(meanie.gethealth()-1);
+						meanie.hitM(cw, 1);
 					}
 				}
-			}
-			else if(M_M.boss==1)
-			{
+				break;
+			case 2:
+				if(meanie.x[2] == MovementspaceObject.getX()+1||meanie.x[2] == MovementspaceObject.getX()-1||meanie.x[2] == MovementspaceObject.getX())
+				{
+					if(meanie.y[2] == MovementspaceObject.getY()+1||meanie.y[2] == MovementspaceObject.getY()-1||meanie.y[2] == MovementspaceObject.getY())
+					{
+						meanie.hitM(cw, 2);
+					}
+				}
+				break;
+			case 3:
+				if(meanie.x[3] == MovementspaceObject.getX()+1||meanie.x[3] == MovementspaceObject.getX()-1||meanie.x[3] == MovementspaceObject.getX())
+				{
+					if(meanie.y[3] == MovementspaceObject.getY()+1||meanie.y[3] == MovementspaceObject.getY()-1||meanie.y[3] == MovementspaceObject.getY())
+					{
+						meanie.hitM(cw, 3);
+					}
+				}
+				break;
+			case 4:
 				if(3==MovementspaceObject.getX()+1||3==MovementspaceObject.getX()-1||3==MovementspaceObject.getX())
 				{
 					if(6==MovementspaceObject.getY()+1||6==MovementspaceObject.getY()-1||6==MovementspaceObject.getY())
@@ -30,6 +48,9 @@ public class WeaponMechanics
 						MovementspaceObject.setY(0);
 					}
 				}
+				break;
+			default:
+				break;
 			}
 
 		}
@@ -37,7 +58,7 @@ public class WeaponMechanics
 		{
 			if(proj==0)
 			{
-				if(M_M.boss==0)
+				if(M_M.r.room==4)
 				{
 					proj=1;
 					Bow.Shoot(MovementspaceObject.getX(),MovementspaceObject.getY(),PlayerMovement.Getd());
@@ -64,18 +85,38 @@ public class WeaponMechanics
 				int win=0;
 				int b =0;
 				bomb--;
-				if(M_M.boss==0)
+				switch(M_M.r.room)
 				{
-					if(M_M.r.current.m.getX() == bombx+1||M_M.r.current.m.getX() == bombx-1||M_M.r.current.m.getX() == bombx)
+				case 0:
+					break;
+				case 1:
+					if(meanie.x[1] == bombx+1||meanie.x[1] == bombx-1||meanie.x[1] == bombx)
 					{
-						if(M_M.r.current.m.getY() == bomby||M_M.r.current.m.getY() == bomby-1||M_M.r.current.m.getY() == bomby)
+						if(meanie.y[1] == bomby||meanie.y[1] == bomby-1||meanie.y[1] == bomby)
 						{
-							meanie.sethealth(meanie.gethealth()-2);
+							meanie.sethealth(meanie.gethealth(1)-2, 1);
 						}
 					}
-				}
-				else
-				{
+					break;
+				case 2:
+					if(meanie.x[2] == bombx+1||meanie.x[2] == bombx-1||meanie.x[2] == bombx)
+					{
+						if(meanie.y[2] == bomby||meanie.y[2] == bomby-1||meanie.y[2] == bomby)
+						{
+							meanie.sethealth(meanie.gethealth(2)-2, 2);
+						}
+					}
+					break;
+				case 3:
+					if(meanie.x[3] == bombx+1||meanie.x[3] == bombx-1||meanie.x[3] == bombx)
+					{
+						if(meanie.y[3] == bomby||meanie.y[3] == bomby-1||meanie.y[3] == bomby)
+						{
+							meanie.sethealth(meanie.gethealth(3)-2, 3);
+						}
+					}
+					break;
+				case 4:
 					for(int v=bombx-1;v<bombx+2;v++)
 					{				
 						if(SB.find(v,bomby+1)!=-1||SB.find(v,bomby)!=-1||SB.find(v,bomby-1)!=-1)
@@ -100,24 +141,46 @@ public class WeaponMechanics
 							SB.Hit(b,bomby-1);	
 						}
 					}
+					break;
+				default:
+					break;
 				}
 			}
 		}
 		else if(cw.equals("Shank"))
 		{
-			if(M_M.boss==0)
+			switch(M_M.r.room)
 			{
-
-				if(M_M.r.current.m.getX() == MovementspaceObject.getX()+1||M_M.r.current.m.getX() == MovementspaceObject.getX()-1||M_M.r.current.m.getX() == MovementspaceObject.getX())
+			case 0:
+				break;
+			case 1:
+				if(meanie.x[1] == MovementspaceObject.getX()+1||meanie.x[1] == MovementspaceObject.getX()-1||meanie.x[1] == MovementspaceObject.getX())
 				{
-					if(M_M.r.current.m.getY() == MovementspaceObject.getY()+1||M_M.r.current.m.getY() == MovementspaceObject.getY()-1||M_M.r.current.m.getY() == MovementspaceObject.getY())
+					if(meanie.y[1] == MovementspaceObject.getY()+1||meanie.y[1] == MovementspaceObject.getY()-1||meanie.y[1] == MovementspaceObject.getY())
 					{
-						meanie.sethealth(meanie.gethealth()-2);
+						meanie.sethealth(meanie.gethealth(1)-2, 1);
 					}
 				}
-			}
-			else if(M_M.boss==1)
-			{
+				break;
+			case 2:
+				if(meanie.x[2] == MovementspaceObject.getX()+1||meanie.x[2] == MovementspaceObject.getX()-1||meanie.x[2] == MovementspaceObject.getX())
+				{
+					if(meanie.y[2] == MovementspaceObject.getY()+1||meanie.y[2] == MovementspaceObject.getY()-1||meanie.y[2] == MovementspaceObject.getY())
+					{
+						meanie.sethealth(meanie.gethealth(2)-2, 2);
+					}
+				}
+				break;
+			case 3:
+				if(meanie.x[3] == MovementspaceObject.getX()+1||meanie.x[3] == MovementspaceObject.getX()-1||meanie.x[3] == MovementspaceObject.getX())
+				{
+					if(meanie.y[3] == MovementspaceObject.getY()+1||meanie.y[3] == MovementspaceObject.getY()-1||meanie.y[3] == MovementspaceObject.getY())
+					{
+						meanie.sethealth(meanie.gethealth(3)-2, 3);
+					}
+				}
+				break;
+			case 4:
 				if(3==MovementspaceObject.getX()+1||3==MovementspaceObject.getX()-1||3==MovementspaceObject.getX())
 				{
 					if(6==MovementspaceObject.getY()+1||6==MovementspaceObject.getY()-1||6==MovementspaceObject.getY())
@@ -126,13 +189,16 @@ public class WeaponMechanics
 						MovementspaceObject.setY(0);
 					}
 				}
+				break;
+			default:
+				break;
 			}
 		}
 		else	//peanuts!
 		{
 			if(proj==0)
 			{
-				if(M_M.boss==0)
+				if(M_M.r.room==4)
 				{
 					proj=2;
 					Bow.Shoot(MovementspaceObject.getX(),MovementspaceObject.getY(),PlayerMovement.Getd());
@@ -144,7 +210,7 @@ public class WeaponMechanics
 				}
 			}
 		}
-		if(M_M.boss==0)
+		if(M_M.r.room==0 || M_M.r.room==1 || M_M.r.room==2 || M_M.r.room==3)
 		{
 			PD.Refresh();
 		}

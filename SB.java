@@ -26,13 +26,13 @@ public class SB
 		{
 			if(MovementspaceObject.getX()==ban.get(c).get(0) && MovementspaceObject.getY()==ban.get(c).get(1))
 			{
-				if(BD.cw.equals("Bow")||BD.cw.equals("Peanuts"))
+				if(BD.cw.equals("Bow"))
 				{
-					MovementspaceObject.setHealth(MovementspaceObject.health-2);
+					MovementspaceObject.health=MovementspaceObject.health-2;
 				}
 				else
 				{
-					MovementspaceObject.setHealth(MovementspaceObject.health-4);
+					MovementspaceObject.health=MovementspaceObject.health-4;
 				}
 				SB.kill(c);
 			}
@@ -82,10 +82,7 @@ public class SB
 			{
 				if(x!=c)
 				{
-					if(Ban.find(c, y)!=-1)
-					{
-						Ban.kill((Ban.find(c,y)));
-					}
+					Ban.kill((Ban.find(c,y)));
 				}
 				else
 				{
@@ -101,7 +98,7 @@ public class SB
 			if(win!=-1)
 			{
 				ban.get(win).set(0,3);
-				ban.get(win).set(1,6);
+				ban.get(win).set(1,5);
 				hit=0;
 			}
 		}

@@ -32,25 +32,77 @@ public class Bow
 			{
 				projectile[0]++;
 			}
-			if(projectile[0]==7||projectile[1]==7||projectile[0]==-1||projectile[1]==-1)
+			switch(M_M.r.room)
 			{
-				d=-1;
-				WeaponMechanics.Kill();
-			}
-			else if(projectile[0]==meanie.getX() && projectile[1]==meanie.getY())
-			{
-				if(WeaponMechanics.Projectile()==1)
+			case 1:
+
+				if(projectile[0]==7||projectile[1]==7||projectile[0]==-1||projectile[1]==-1)
 				{
-					meanie.sethealth(meanie.gethealth()-1);
 					d=-1;
 					WeaponMechanics.Kill();
 				}
-				else if(WeaponMechanics.Projectile()==2)
+				else if(projectile[0]==meanie.getX(1) && projectile[1]==meanie.getY(1))
 				{
-					//lol no damage
+					if(WeaponMechanics.Projectile()==1)
+					{
+						meanie.sethealth(meanie.gethealth(1)-1, 1);
+						d=-1;
+						WeaponMechanics.Kill();
+					}
+					else if(WeaponMechanics.Projectile()==2)
+					{
+						//lol no damage
+						d=-1;
+						WeaponMechanics.Kill();
+					}			
+				}
+				break;
+			case 2:
+				if(projectile[0]==7||projectile[1]==7||projectile[0]==-1||projectile[1]==-1)
+				{
 					d=-1;
 					WeaponMechanics.Kill();
-				}			
+				}
+				else if(projectile[0]==meanie.getX(2) && projectile[1]==meanie.getY(2))
+				{
+					if(WeaponMechanics.Projectile()==1)
+					{
+						meanie.sethealth(meanie.gethealth(2)-1, 2);
+						d=-1;
+						WeaponMechanics.Kill();
+					}
+					else if(WeaponMechanics.Projectile()==2)
+					{
+						//lol no damage
+						d=-1;
+						WeaponMechanics.Kill();
+					}			
+				}
+				break;
+			case 3:
+				if(projectile[0]==7||projectile[1]==7||projectile[0]==-1||projectile[1]==-1)
+				{
+					d=-1;
+					WeaponMechanics.Kill();
+				}
+				else if(projectile[0]==meanie.getX(3) && projectile[1]==meanie.getY(3))
+				{
+					if(WeaponMechanics.Projectile()==1)
+					{
+						meanie.sethealth(meanie.gethealth(3)-1, 3);
+						d=-1;
+						WeaponMechanics.Kill();
+					}
+					else if(WeaponMechanics.Projectile()==2)
+					{
+						//lol no damage
+						d=-1;
+						WeaponMechanics.Kill();
+					}			
+				}
+				break;
+			default:
+				break;
 			}
 		}
 	}
@@ -107,7 +159,7 @@ public class Bow
 			}
 			//else if(projectile[0]== && projectile[1]==)//hits boss projectile
 			//{
-				//WeaponMechanics.Kill();
+			//WeaponMechanics.Kill();
 			//}
 		}
 	}

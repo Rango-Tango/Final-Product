@@ -3,7 +3,7 @@ public class GameOverScreen {
   
 	public void gameOver(){
 		int g;
-		if(Movementobject.health()=0;){
+		if(MovementspaceObject.getHealth()==0){
 		
 		}
 		else{

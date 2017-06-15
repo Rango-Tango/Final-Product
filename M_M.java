@@ -19,7 +19,7 @@ public class M_M extends JFrame
 	static JFrame bossframe=new JFrame();
 	public static CM cm;
 	public static Toggle tog=new Toggle();
-	static int boss=-1;
+	public static int check =0;
 	public static PlayerMovement move=new PlayerMovement();
 	public static CreatingRooms r = new CreatingRooms();
 	public static void main(String[] args)
@@ -61,8 +61,9 @@ public class M_M extends JFrame
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				menuframe.setVisible(false);
+				r.room=0;
+				r.startup(); 
 				frame.setVisible(true);
-				boss=0;
 				PD.Refresh();
 			}
 		});
@@ -97,87 +98,252 @@ public class M_M extends JFrame
 		int x1;
 		int y1;
 		int XorY = 0;
-		meanie.meanieAI();
-		while(boss==0)
+		while(true)
 		{
 			//System.out.println("hello");
 			x1 = MovementspaceObject.getX();
 			y1 = MovementspaceObject.getY();
-			if(x1==M_M.r.current.m.getX()&&y1==M_M.r.current.m.getY())
+			switch(M_M.r.room)
 			{
-				meanie.meanieAI();
-			}
-			else if(r.current.ifMeanie())
-			{
-				//System.out.println("working");
-				try
+			case 0:
+				break;
+			case 1:
+				//System.out.println(r.left.mean);
+				if(r.left.ifMeanie())
 				{
-
-					Thread.sleep(500);
-				}
-				catch(InterruptedException o)
-				{
-					//System.out.println("error");
-				}
-
-				x2 = M_M.r.current.m.getX();
-				y2=  M_M.r.current.m.getY();
-				if(XorY==0)
-				{
-					//System.out.println("moving x");
-					if (x2>x1)
+					if(x1==meanie.getX(1)&&y1==meanie.getY(1))
 					{
-						if(x2!=0)
-						{
-							M_M.r.current.m.setX(x2-1);
-						}
-						else
-						{
-							M_M.r.current.m.setX(x2+1);
-						}
+						meanie.meanieAI(1);
 					}
-					else if (x2<x1)
+					//System.out.println("working");
+					try
 					{
-						if(x2!=7)
-						{
-							M_M.r.current.m.setX(x2+1);
-						}
-						else
-						{
-							M_M.r.current.m.setX(x2-1);
-						}
+						
+						Thread.sleep(500);
 					}
-					XorY=1;
-				}
-				else if(XorY==1)
-				{
-					//	System.out.println("moving y");
-					if (y2>y1)
+					catch(InterruptedException o)
 					{
-						if(y2!=0)
-						{
-							M_M.r.current.m.setY(y2-1);
-						}
-						else
-						{
-							M_M.r.current.m.setY(y2+1);
-						}
+						//System.out.println("error");
 					}
 
-					else if (y2<y1)
+					x2 = meanie.getX(1);
+					y2=  meanie.getY(1);
+					if(XorY==0)
 					{
-						if(y2!=7)
+						//System.out.println("moving x");
+						if (x2>x1)
 						{
-							M_M.r.current.m.setY(y2+1);
+							if(x2!=0)
+							{
+								meanie.setX(x2-1,1);
+							}
+							else
+							{
+								meanie.setX(x2+1, 1);
+							}
 						}
-						else
+						else if (x2<x1)
 						{
-							M_M.r.current.m.setY(y2-1);
+							if(x2!=6)
+							{
+								meanie.setX(x2+1, 1);
+							}
+							else
+							{
+								meanie.setX(x2-1, 1);
+							}
 						}
+						XorY=1;
 					}
-					XorY=0;
+					else if(XorY==1)
+					{
+					//System.out.println("moving y");
+						if (y2>y1)
+						{
+							if(y2!=0)
+							{
+								meanie.setY(y2-1, 1);
+							}
+							else
+							{
+								meanie.setY(y2+1, 1);
+							}
+						}
+						
+						else if (y2<y1)
+						{
+							if(y2!=6)
+							{
+								meanie.setY(y2+1, 1);
+							}
+							else
+							{
+								meanie.setY(y2-1, 1);
+							}
+						}
+						XorY=0;
+					}
+					PD.Refresh();
 				}
-				PD.Refresh();
+				break;
+			case 2:
+				if(r.right.ifMeanie())
+				{
+					if(x1==meanie.getX(2)&&y1==meanie.getY(2))
+					{
+						meanie.meanieAI(2);
+					}
+					//System.out.println("working");
+					try
+					{
+						
+						Thread.sleep(500);
+					}
+					catch(InterruptedException o)
+					{
+						//System.out.println("error");
+					}
+
+					x2 = meanie.getX(2);
+					y2=  meanie.getY(2);
+					if(XorY==0)
+					{
+						//System.out.println("moving x");
+						if (x2>x1)
+						{
+							if(x2!=0)
+							{
+								meanie.setX(x2-1, 2);
+							}
+							else
+							{
+								meanie.setX(x2+1, 2);
+							}
+						}
+						else if (x2<x1)
+						{
+							if(x2!=6)
+							{
+								meanie.setX(x2+1, 2);
+							}
+							else
+							{
+								meanie.setX(x2-1, 2);
+							}
+						}
+						XorY=1;
+					}
+					else if(XorY==1)
+					{
+					//System.out.println("moving y");
+						if (y2>y1)
+						{
+							if(y2!=0)
+							{
+								meanie.setY(y2-1, 2);
+							}
+							else
+							{
+								meanie.setY(y2+1, 2);
+							}
+						}
+						
+						else if (y2<y1)
+						{
+							if(y2!=6)
+							{
+								meanie.setY(y2+1, 2);
+							}
+							else
+							{
+								meanie.setY(y2-1, 2);
+							}
+						}
+						XorY=0;
+					}
+					PD.Refresh();
+				}
+				break;
+			case 3:
+				if(r.up.ifMeanie())
+				{
+					if(x1==meanie.getX(3)&&y1==meanie.getY(3))
+					{
+						meanie.meanieAI(3);
+					}
+					//System.out.println("working");
+					try
+					{
+						
+						Thread.sleep(500);
+					}
+					catch(InterruptedException o)
+					{
+						//System.out.println("error");
+					}
+
+					x2 = meanie.getX(3);
+					y2=  meanie.getY(3);
+					if(XorY==0)
+					{
+						//System.out.println("moving x");
+						if (x2>x1)
+						{
+							if(x2!=0)
+							{
+								meanie.setX(x2-1, 3);
+							}
+							else
+							{
+								meanie.setX(x2+1, 3);
+							}
+						}
+						else if (x2<x1)
+						{
+							if(x2!=6)
+							{
+								meanie.setX(x2+1, 3);
+							}
+							else
+							{
+								meanie.setX(x2-1, 3);
+							}
+						}
+						XorY=1;
+					}
+					else if(XorY==1)
+					{
+					//System.out.println("moving y");
+						if (y2>y1)
+						{
+							if(y2!=0)
+							{
+								meanie.setY(y2-1, 3);
+							}
+							else
+							{
+								meanie.setY(y2+1, 3);
+							}
+						}
+						
+						else if (y2<y1)
+						{
+							if(y2!=6)
+							{
+								meanie.setY(y2+1, 3);
+							}
+							else
+							{
+								meanie.setY(y2-1, 3);
+							}
+						}
+						XorY=0;
+					}
+					PD.Refresh();
+				}
+				break;
+			default:
+				break;
 			}
 		}
 	}
@@ -193,7 +359,7 @@ public class M_M extends JFrame
 		bossframe.add(bd);
 		frame.setVisible(false);
 		bossframe.setVisible(true);
-		boss=1;
+		r.room=4;
 		BD.Refresh();
 	}
 
@@ -201,18 +367,11 @@ public class M_M extends JFrame
 	{
 		pd.repaint();
 	}
-
+	
 	public static void win()
 	{
-		frame.setVisible(false);
-		bossframe.setVisible(false);
-		JFrame lose=new JFrame();
-		Win loss=new Win();
-		lose.add(loss);
-		lose.setSize(400,400);
-		lose.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		lose.setVisible(true);
-		loss.setVisible(true);
+		System.out.println("You Win");
+		System.exit(0);
 	}
 	public static void GO()
 	{
@@ -228,7 +387,7 @@ public class M_M extends JFrame
 	}
 	public static void Menu()
 	{
-		boss=-1;
+		r.room=0;
 		menuframe.setVisible(true);
 	}
 }

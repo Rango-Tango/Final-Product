@@ -11,7 +11,11 @@ public class PlayerMovement
 			{
 				if(e.getKeyCode()==37)//left arrow key pressed
 				{
-					if(MovementspaceObject.getX()>0)
+					if(MovementspaceObject.getX()==0 && MovementspaceObject.getY()==3 &&(M_M.r.room==0 || M_M.r.room==2))
+					{
+						Transtion.roomTransition(0, 3);
+					}
+					else if(MovementspaceObject.getX()>0)
 					{
 						MovementspaceObject.setX(MovementspaceObject.getX()-1);
 						d=1;
@@ -19,16 +23,24 @@ public class PlayerMovement
 				}
 				else if(e.getKeyCode()==38)//up arrow key pressed
 				{
-					if(MovementspaceObject.getY()<6)
+					if(MovementspaceObject.getX()==3 && MovementspaceObject.getY()==6 && M_M.r.room==0)
+					{
+						Transtion.roomTransition(3, 6);
+					}
+
+					else if(MovementspaceObject.getY()<6)
 					{
 						MovementspaceObject.setY(MovementspaceObject.getY()+1);
 						d=0;
-						//meanie.meanieAI(M_M.r.current.getMeanie());
 					}
 				}
 				else if(e.getKeyCode()==39)//right arrow key pressed
 				{
-					if(MovementspaceObject.getX()<6)
+					if(MovementspaceObject.getX()==6 && MovementspaceObject.getY()==3 && (M_M.r.room==1 || M_M.r.room==0))
+					{
+						Transtion.roomTransition(6, 3);
+					}
+					else if(MovementspaceObject.getX()<6)
 					{
 						MovementspaceObject.setX(MovementspaceObject.getX()+1);
 						d=3;
@@ -36,63 +48,17 @@ public class PlayerMovement
 				}
 				else if(e.getKeyCode()==40)//down arrow key pressed
 				{
-					if(MovementspaceObject.getY()>0)
+					if(MovementspaceObject.getX()==3 && MovementspaceObject.getY()==0 && M_M.r.room==3)
+					{
+						Transtion.roomTransition(3, 0);
+					}
+					else if(MovementspaceObject.getY()>0)
 					{
 						MovementspaceObject.setY(MovementspaceObject.getY()-1);
 						d=2;
 					}
 				}
-				if(M_M.r.current == M_M.r.start)
-				{
-					if(MovementspaceObject.getX()==6 && MovementspaceObject.getY()==3)
-					{
-						M_M.r.current = M_M.r.right;
-					}
-					else if(MovementspaceObject.getX()==3 && MovementspaceObject.getY()==6)
-					{
-						M_M.r.current = M_M.r.up;
-					}
-					else if(MovementspaceObject.getX()==0 && MovementspaceObject.getY()==3)
-					{
-						M_M.r.current = M_M.r.left;
-					}
-				}
-				else if(M_M.r.current == M_M.r.left)
-				{
-					if(MovementspaceObject.getX()==6 && MovementspaceObject.getY()==3)
-					{
-						if(M_M.r.current.getMeanie()!=null)
-						{
-							M_M.r.current.getMeanie().setX(3);
-							M_M.r.current.getMeanie().setY(3);
-						}
-						M_M.r.current = M_M.r.start;
-					}
-				}
-				else if(M_M.r.current==M_M.r.up)
-				{
-					if(MovementspaceObject.getX()==3 && MovementspaceObject.getY()==0)
-					{
-						if(M_M.r.current.getMeanie()!=null)
-						{
-							M_M.r.current.getMeanie().setX(3);
-							M_M.r.current.getMeanie().setY(3);
-						}
-						M_M.r.current = M_M.r.start;
-					}
-				}
-				else if(M_M.r.current == M_M.r.right)
-				{
-					if(MovementspaceObject.getX()==0 && MovementspaceObject.getY()==3)
-					{
-						if(M_M.r.current.getMeanie()!=null)
-						{
-							M_M.r.current.getMeanie().setX(3);
-							M_M.r.current.getMeanie().setY(3);
-						}
-						M_M.r.current = M_M.r.start;
-					}
-				}
+				
 				PD.Refresh();
 			}
 			@Override

@@ -4,15 +4,15 @@ public class Toggle
 {
 	static String cw=new String("Sword");
 	static int cwn=0;
-	static int weapons=5;
+	static int weapons=2;
 	static ArrayList<String> weap=new ArrayList<String>();
 	public Toggle()
 	{
 		weap.add("Sword");
-		weap.add("Bow");
+		//weap.add("Bow");
 		weap.add("Bomb");
-		weap.add("Shank");
-		weap.add("Peanuts");
+		//weap.add("Shank");
+		//weap.add("Peanuts");
 		M_M.frame.addKeyListener(new KeyListener()
 		{
 			@Override
