@@ -100,7 +100,7 @@ public class M_M extends JFrame
 		int XorY = 0;
 		while(true)
 		{
-			//System.out.println("hello");
+			System.out.println("hello");
 			x1 = MovementspaceObject.getX();
 			y1 = MovementspaceObject.getY();
 			switch(M_M.r.room)
