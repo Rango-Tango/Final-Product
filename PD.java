@@ -1,10 +1,11 @@
 import javax.swing.*;
-import net.miginfocom.swing.MigLayout;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.*;
 import javax.swing.JPanel;
+
+import net.miginfocom.swing.MigLayout;
 public class PD extends JPanel 
 {
 	/**
@@ -102,20 +103,18 @@ public class PD extends JPanel
 		switch(M_M.r.room)
 		{
 		case 0:
-			x2 = M_M.r.start.m.getX();
-			y2=  M_M.r.start.m.getY();
 			break;
 		case 1:
-			x2=M_M.r.left.m.getX();
-			y2=M_M.r.left.m.getY();
+			x2=meanie.getX(1);
+			y2=meanie.getY(1);
 			break;
 		case 2:
-			x2=M_M.r.right.m.getX();
-			y2=M_M.r.right.m.getY();
+			x2=meanie.getX(2);
+			y2=meanie.getY(2);
 			break;
 		case 3:
-			x2=M_M.r.up.m.getX();
-			y2=M_M.r.up.m.getY();
+			x2=meanie.getX(3);
+			y2=meanie.getY(3);
 		}
 		Bow.Time();
 		arrow.set(0, Bow.getx());
@@ -133,27 +132,26 @@ public class PD extends JPanel
 		switch(M_M.r.room)
 		{
 		case 0:
-			if(M_M.r.start.ifMeanie())
-			{
-				grid.get(x2).get(y2).setIcon(new ImageIcon("G:\\Downloads\\New Piskel.png"));
-			}
 			break;
 		case 1:
 			if(M_M.r.left.ifMeanie())
 			{
 				grid.get(x2).get(y2).setIcon(new ImageIcon("G:\\Downloads\\New Piskel.png"));
+				System.out.println(meanie.item[1]+" "+meanie.gethealth(1));
 			}
 			break;
 		case 2:
 			if(M_M.r.right.ifMeanie())
 			{
 				grid.get(x2).get(y2).setIcon(new ImageIcon("G:\\Downloads\\New Piskel.png"));
+				System.out.println(meanie.item[2]+" "+meanie.gethealth(2));
 			}
 			break;
 		case 3:
 			if(M_M.r.up.ifMeanie())
 			{
 				grid.get(x2).get(y2).setIcon(new ImageIcon("G:\\Downloads\\New Piskel.png"));
+				System.out.println(meanie.item[3]+" "+meanie.gethealth(3));
 			}
 			break;
 		default:

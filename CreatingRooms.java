@@ -41,6 +41,7 @@ public class CreatingRooms
 	public void startup()
 	{
 		////################whats going on here? SOS################/////////////
+		System.out.println("startup");
 		for(int c=0;c<3;c++)
 		{
 			random = (int)Math.round(Math.random()*3)+1;
@@ -61,14 +62,14 @@ public class CreatingRooms
 				c--;
 			}
 		}
-		for(int c=0;c<3;c++)
+		for(int c=1;c<4;c++)
 		{
 				//m = new meanie();
 				check=1;
 				try
 				{
 					input = new Scanner(file);
-					for(c2=0;c2<item[c]-1;c2++)
+					for(c2=0;c2<item[c-1]-1;c2++)
 					{
 						input.nextLine();
 					}
@@ -77,6 +78,11 @@ public class CreatingRooms
 					meanie.x[c]=(3);
 					meanie.y[c]=(3);
 					meanie.health[c]=(3);
+					System.out.println(c);
+					System.out.println(meanie.x[c]);
+					System.out.println(meanie.y[c]);
+					System.out.println(meanie.item[c]);
+					System.out.println(meanie.health[c]);
 					///VVVVVVVVVV
 				/*for(c2=0;c2<item[c]-1;c2++)
 				{
@@ -109,7 +115,7 @@ public class CreatingRooms
 					System.out.println("not working");
 				}
 		}
-		 
+		 System.out.println("end startup");
 		room=0;
 	}
 }
