@@ -1,169 +1,169 @@
+import javax.swing.ImageIcon;
+
 public class meanie {
 
 	public void meanie()
 	{
-
-	}//need to set weapon, set health, get location
-
-	protected static int health=4;
-	private String item;
-	protected static int x, y;//the x and y coordinats of the meanie
-
-	//protected String[][] locationM=new String [8][8];
-
-	public static int gethealth ()
-	{
-		return health;
-	}//get the meanie health
-
-	public static void sethealth (int heal)
-	{
-		health=heal;
-	}//setting health of meanie
-
-	public void setX(int X)
-	{
-		x=X;
+		
 	}
+        public static String item[] = new String[4];
+        public static int health[] = new int[4];
+        public static int x[] = new int[4];
+        public static int y[] = new int[4];
+        //the x and y coordinats of the PD.mOneie
 
-	public void setY(int Y)
-	{
-		y=Y;
-	}
+        //protected String[][] locationM=new String [8][8];
 
-	public static int getX()
-	{
-		return x;
-	}
+        public static int gethealth (int room)
+        {
+                return health[room];
+        }//get the PD.mOneie health
 
-	public static int getY()
-	{
-		return y;
-	}
-	public String getItem()
-	{
-		return item;
-	}
-	public void setItem(String item)
-	{
-		this.item = item;
-	}
-	public void hitM(String weaponP)
-	{
-		if (weaponP.equals("sword"))//if the item the player has is a basic sword, he gets .5 heats off
-		{
-			health=health-1;	
-		}
-		else if (weaponP.equals("bow"))
-		{
-			health=health-2;//lose a heart
-		}
-		else if (weaponP.equals("bomb"))
-		{
-			health=health-2;//loose a heart
-		}
-		else if(weaponP.equals("shank"))
-		{
-			health=health-2;//lose a heart
-		}
-	}
-	public void meanieAI (String [][] playerlocal/*need player's current x an y */, meanie mean)//need the player location and the pre-created meanie(in main have this update with player movemnt
-	{
-		//each time the player moves in a meanie room they need to update this
+        public static void sethealth (int heal, int room)
+        {
+               health[room]=heal;
+       }//setting health of PD.mOneie
 
-		int loopingStall=0,cri=0;
-		int xGoal, yGoal,jumpBack, shiftX,shiftY;//where player is/ goal for meanie
+        public static void setX(int X, int room)
+        {
+                x[room]=X;
+        }
 
-		//%%%%%% figure out how he stored it, i understand as an array but, how can i get the number out//
-		//what did he store in the array? can i char AT it to separate?
+        public static void setY(int Y, int room)
+        {
+                y[room]=Y;
+        }
 
-		xGoal=MovementspaceObject.getX();//chat at and get the players x&Y coordinates
-		yGoal=MovementspaceObject.getY();
+        public static int getX(int room)
+        {
+        	return x[room];
+        }
 
-		jumpBack=(int)Math.random();//make a random amount/direction for meanie to jump back to
-		System.out.println(jumpBack);
+        public static int getY(int room)
+        {
+                return y[room];
+        }
+        public String getItem(int room)
+        {
+                return item[room];
+        }
+        public void setItem(String item, int room)
+        {
+                this.item[room] = item;
+        }
+        public static void hitM(String weaponP, int room)
+        {
+        	if (weaponP.equals("Sword"))//if the item the player has is a basic Sword, he gets .5 heats off
+            {
+                    meanie.sethealth(meanie.gethealth(room)-1,room);        
+            }
+            else if (weaponP.equals("Bow"))
+            {
+            	meanie.sethealth(meanie.gethealth(room)-1,room); 
+            }
+            else if (weaponP.equals("Bomb"))
+            {
+            	meanie.sethealth(meanie.gethealth(room)-1,room); 
+            }
+            else if(weaponP.equals("Shank"))
+            {
+            	meanie.sethealth(meanie.gethealth(room)-1,room); 
+            }
+        	if(health[room]<=0)
+        	{
+        		switch(room)
+        		{
+        		case 0:
+        			break;
+        		case 1:
+        			M_M.r.left.mean=0;
+        			break;
+        		case 2:
+        			M_M.r.right.mean=0;
+        			break;
+        		case 3:
+        			M_M.r.up.mean=0;
+        			break;
+        		default:
+        			break;
+        		}
+        		Toggle.NewWeapon(item[room]);
+        		/*switch(item[room])
+        		{
+        		case "Bomb":
+        			M_M.pd.grid.get(x).get(y).setIcon(new ImageIcon("G:\\Downloads\\New Piskel (5).png"));
+        			break;
+        		case "Bow":
+        			M_M.pd.grid.get(x).get(y).setIcon(new ImageIcon("G:\\Downloads\\New Piskel (3).png"));
+        			break;
+        		case "Shank":
+        			M_M.pd.grid.get(x).get(y).setIcon(new ImageIcon("G:\\Downloads\\New Piskel (2).png"));
+        			break;
+        		case "Peanuts":
+        			M_M.pd.grid.get(x).get(y).setIcon(new ImageIcon("G:\\Downloads\\Peanut.png"));
+        			break;
+        		default:
+        			break;
+        		}*/
+        	}
+        }
+        public static void meanieAI (int room)//need the player location and the pre-created PD.mOneie(in main have this update with player movement
+        {
+                int loopingStall=0,cri=0;
+                int xGoal, yGoal,jumpBack, shiftX,shiftY;//where player is/ goal for PD.mOneie
 
+                xGoal=MovementspaceObject.getX();//chat at and get the players x&Y coordinates
+                yGoal=MovementspaceObject.getY();
 
-		while (cri==-1)//to stop the meanie from going (only when dead)
-		{
-			if (x==xGoal&&y==yGoal)//manie hits player and jumps back
-			{
-				MovementspaceObject.healthDown(1);// if player is hit
+                jumpBack=(int)(Math.random()*10);//make a random amount/direction for PD.mOneie to jump back to
+      
+                                MovementspaceObject.healthDown(1);// if player is hit
+                                PD.Health(MovementspaceObject.getHealth());
 
-				if (jumpBack==1||jumpBack==4||jumpBack==6)//set meanie to another local
-				{
-					if (x>=3)
-					{shiftX=(x-2);}
-					else
-					{shiftX=(x+3);}
+                                if (jumpBack==1||jumpBack==4||jumpBack==6)//set PD.mOneie to another local
+                                {
+                                        if (x[room]>=3)
+                                        {shiftX=(x[room]-2);}
+                                        else
+                                        {shiftX=(x[room]+3);}
 
-					if (y<=1)
-					{shiftY=(y+2);					}
-					else {shiftY =y-2;	}
-					mean.setX(shiftX);
-					mean.setY(shiftY);
-				}
-				//dont actually set the jump back untill u make sure its in the frame 0<x<7
-				else if (jumpBack==2||jumpBack==5||jumpBack==8)
-				{
-					if (x>=4 )
-					{shiftX=(x-3);}
-					else
-					{shiftX=(x+2);}
+                                        if (y[room]<=1)
+                                        {shiftY=(y[room]+2);                                  }
+                                        else {shiftY =y[room]-2;      }
+                                        x[room]=shiftX;
+                                        y[room] = shiftY;
+                                }
+                                //dont actually set the jump back until u make sure its in the frame 0<x<7
+                                else if (jumpBack==2||jumpBack==5||jumpBack==8)
+                                {
+                                        if (x[room]>=4 )
+                                        {shiftX=(x[room]-3);}
+                                        else
+                                        {shiftX=(x[room]+2);}
 
-					if (y<=6)
-					{shiftY=(y+1);					}
-					else {shiftY =y-3;	}
-					mean.setX(shiftX);
-					mean.setY(shiftY);
-				}
-				else if(jumpBack==3||jumpBack==7||jumpBack==9)
-				{
-					if (x>=6 )
-					{shiftX=(x-4);}
-					else
-					{shiftX=(x+2);}
+                                        if (y[room]<=6)
+                                        {shiftY=(y[room]+1);                                  }
+                                        else {shiftY =y[room]-3;      }
+                                        x[room]=(shiftX);
+                                        y[room]=(shiftY);
+                                }
+                                else if(jumpBack==3||jumpBack==7||jumpBack==9)
+                                {
+                                        if (x[room]>=6 )
+                                        {shiftX=(x[room]-4);}
+                                        else
+                                        {shiftX=(x[room]+2);}
 
-					if (y>=5)
-					{shiftY=(y-1);					}
-					else {shiftY =y+3;	}
-					mean.setX(shiftX);
-					mean.setY(shiftY);
-				}
-			}
-			else //meanie trying to get to player 
-			{
-				if ((mean.getX())>=xGoal)
-				{
-					mean.setX((mean.getX()-1));
-				}
-				else if ((mean.getX())<=xGoal)
-				{
-					mean.setX((mean.getX()+1));
-				}
+                                        if (y[room]>=5)
+                                        {shiftY=(y[room]-1);                                  }
+                                        else {shiftY =y[room]+3;      }
+                                        x[room]=(shiftX);
+                                        y[room]=(shiftY);
+                                }
+                        }
+              
 
-				if ((mean.getY())>=yGoal)
-				{
-					mean.setY((mean.getY()-1));
-				}
-				else if ((mean.getY())<=yGoal)
-				{
-					mean.setY((mean.getY()+1));
-				}
+             //   }//while
 
-			}//end of else 
-
-			int stat=mean.gethealth();
-			if (stat==0)//meanie has no health
-			{
-				cri=-1;
-			}
-			else //still got the heath, keep on running
-			{
-
-			}
-
-		}//while
-
-	}
-}
+        }
+//}
