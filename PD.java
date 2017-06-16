@@ -1,11 +1,9 @@
 import javax.swing.*;
+import net.miginfocom.swing.MigLayout;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.*;
-import javax.swing.JPanel;
-
-import net.miginfocom.swing.MigLayout;
 public class PD extends JPanel 
 {
 	/**
@@ -20,7 +18,8 @@ public class PD extends JPanel
 	static int ad=-1;
 	static Graphics w;
 	static meanie mOne = new meanie();
-	static JLabel weap=new JLabel();	//bomb and arrow values: 0 is x and 1 is y.
+	meanie m = new meanie();
+	static JLabel weap=new JLabel();
 	/**
 	 * Create the panel.
 	 */
@@ -87,7 +86,7 @@ public class PD extends JPanel
 		{
 			heart.get(c).setIcon(new ImageIcon("Heart Right.png"));
 		}
-		for(int c=0;c<9;c++)
+		for(int c=0;c<8;c++)
 		{
 			add(heart.get(c), "cell " + c + " 0");
 		}
@@ -100,28 +99,22 @@ public class PD extends JPanel
 		int y1=MovementspaceObject.getY();
 		int x2=0;
 		int y2=0;
-		switch(M_M.r.room)
+		int XorY = 0;
+		if(M_M.r.current.ifMeanie())
 		{
-		case 0:
-			break;
-		case 1:
-			x2=meanie.getX(1);
-			y2=meanie.getY(1);
-			break;
-		case 2:
-			x2=meanie.getX(2);
-			y2=meanie.getY(2);
-			break;
-		case 3:
-			x2=meanie.getX(3);
-			y2=meanie.getY(3);
+			x2 = M_M.r.current.m.getX();
+			y2=  M_M.r.current.m.getY();
+		}
+		else
+		{
+			x2 = M_M.r.current.f.getX();
+			y2 = M_M.r.current.f.getX();
 		}
 		Bow.Time();
 		arrow.set(0, Bow.getx());
 		arrow.set(1, Bow.gety());
 		bomb.set(0, WeaponMechanics.bombx);
 		bomb.set(1, WeaponMechanics.bomby);
-		M_M.nextRoom();
 		for(int c=0;c<7;c++)
 		{
 			for(int v=0;v<7;v++)
@@ -129,34 +122,9 @@ public class PD extends JPanel
 				grid.get(c).get(v).setIcon(new ImageIcon("Blank.png"));
 			}
 		}
-		switch(M_M.r.room)
+		if(x2!=7)
 		{
-		case 0:
-			break;
-		case 1:
-			if(M_M.r.left.ifMeanie())
-			{
-				System.out.println(x2+" "+y2);
-				grid.get(x2).get(y2).setIcon(new ImageIcon("New Piskel.png"));
-				System.out.println(meanie.item[1]+" "+meanie.gethealth(1));
-			}
-			break;
-		case 2:
-			if(M_M.r.right.ifMeanie())
-			{
-				grid.get(x2).get(y2).setIcon(new ImageIcon("New Piskel.png"));
-				System.out.println(meanie.item[2]+" "+meanie.gethealth(2));
-			}
-			break;
-		case 3:
-			if(M_M.r.up.ifMeanie())
-			{
-				grid.get(x2).get(y2).setIcon(new ImageIcon("New Piskel.png"));
-				System.out.println(meanie.item[3]+" "+meanie.gethealth(3));
-			}
-			break;
-		default:
-			break;
+			grid.get(x2).get(y2).setIcon(new ImageIcon("New Piskel.png"));
 		}
 		grid.get(x1).get(y1).setIcon(new ImageIcon("New Piskel (1).png"));
 		if(WeaponMechanics.Projectile()==2)
@@ -186,6 +154,22 @@ public class PD extends JPanel
 		{		
 			grid.get(bomb.get(0)).get(bomb.get(1)).setIcon(new ImageIcon("New Piskel (5).png"));
 		}
+		if(MovementspaceObject.health!=health)
+		{
+			for(int c=health;c!=0;c--)
+			{
+				if(MovementspaceObject.health<0)
+				{
+					//dead
+				}
+				else if(MovementspaceObject.health<c)
+				{
+					heart.get(heart.size()-1).setIcon(null);
+					heart.remove(heart.size()-1);
+				}
+			}
+			health=MovementspaceObject.health;
+		}
 	}
 	public static void Weaponset(String cw)
 	{
@@ -203,16 +187,12 @@ public class PD extends JPanel
 		}
 		else if(cw.equals("Shank"))
 		{
-			weap.setIcon(new ImageIcon("New Piskel (2).png"));
+			weap.setIcon(new ImageIcon("Shank.png"));
 		}
 		else if(cw.equals("Peanuts"))
 		{
 			weap.setIcon(new ImageIcon("Peanut.png"));
 		}
-	}
-	public static void Health(int h)
-	{
-		//heart.remove(heart.size()-1);
 	}
 	public void paintComponent(Graphics g)
 	{
@@ -235,94 +215,94 @@ public class PD extends JPanel
 			break;
 		}
 	}
-	public void LeftRoom(Graphics g){
-		Color y = null;
-		g.fillRect (0, 0, 500, 500);
-		g.setColor(y.green);
-		g.drawRect(25, 75, 350, 350);
-		g.drawLine(75,75,75,425);
-		g.drawLine(125,75,125,425);
-		g.drawLine(175, 75, 175, 425);
-		g.drawLine(225, 75, 225, 425);
-		g.drawLine(275, 75, 275, 425);
-		g.drawLine(325, 75, 325, 425);
-		//Vertical lines
-		g.drawLine(25, 125, 375, 125);
-		g.drawLine(25, 175, 375, 175);
-		g.drawLine(25, 225, 375, 225);
-		g.drawLine(25, 275, 375, 275);
-		g.drawLine(25, 325, 375, 325);
-		g.drawLine(25, 375, 375, 375);
-		//Horizontal Lines
-		g.setColor(y.black);
-		g.drawLine(375, 225, 375, 275);
-	}
-	public void MiddleRoom(Graphics g){
-		Color y = null;
-		g.fillRect (0, 0, 500, 500);
-		g.setColor(y.green);
-		g.drawRect(25, 75, 350, 350);
-		g.drawLine(75,75,75,425);
-		g.drawLine(125,75,125,425);
-		g.drawLine(175, 75, 175, 425);
-		g.drawLine(225, 75, 225, 425);
-		g.drawLine(275, 75, 275, 425);
-		g.drawLine(325, 75, 325, 425);
-		//Vertical lines
-		g.drawLine(25, 125, 375, 125);
-		g.drawLine(25, 175, 375, 175);
-		g.drawLine(25, 225, 375, 225);
-		g.drawLine(25, 275, 375, 275);
-		g.drawLine(25, 325, 375, 325);
-		g.drawLine(25, 375, 375, 375);
-		//Horizontal Lines
-		g.setColor(y.black);
-		g.drawLine(375, 225, 375, 275);
-		g.drawLine(25, 225, 25, 275);
-		g.drawLine(175, 75, 225, 75);
-	}
-	public void RightRoom(Graphics g){
-		Color y = null;
-		g.fillRect (0, 0, 500, 500);
-		g.setColor(y.green);
-		g.drawRect(25, 75, 350, 350);
-		g.drawLine(75,75,75,425);
-		g.drawLine(125,75,125,425);
-		g.drawLine(175, 75, 175, 425);
-		g.drawLine(225, 75, 225, 425);
-		g.drawLine(275, 75, 275, 425);
-		g.drawLine(325, 75, 325, 425);
-		//Vertical lines
-		g.drawLine(25, 125, 375, 125);
-		g.drawLine(25, 175, 375, 175);
-		g.drawLine(25, 225, 375, 225);
-		g.drawLine(25, 275, 375, 275);
-		g.drawLine(25, 325, 375, 325);
-		g.drawLine(25, 375, 375, 375);
-		//Horizontal Lines
-		g.setColor(y.black);
-		g.drawLine(25, 225, 25, 275);
-	}
-	public void TopRoom(Graphics g){
-		Color y = null;
-		g.fillRect (0, 0, 500, 500);
-		g.setColor(y.green);
-		g.drawRect(25, 75, 350, 350);
-		g.drawLine(75,75,75,425);
-		g.drawLine(125,75,125,425);
-		g.drawLine(175, 75, 175, 425);
-		g.drawLine(225, 75, 225, 425);
-		g.drawLine(275, 75, 275, 425);
-		g.drawLine(325, 75, 325, 425);
-		//Vertical lines
-		g.drawLine(25, 125, 375, 125);
-		g.drawLine(25, 175, 375, 175);
-		g.drawLine(25, 225, 375, 225);
-		g.drawLine(25, 275, 375, 275);
-		g.drawLine(25, 325, 375, 325);
-		g.drawLine(25, 375, 375, 375);
-		//Horizontal Lines
-		g.setColor(y.black);
-		g.drawLine(175, 425, 225, 425);   
-	}
+	   public void LeftRoom(Graphics g){
+		   Color y = null;
+		      g.fillRect (0, 0, 500, 500);
+		     g.setColor(y.green);
+		     g.drawRect(25, 75, 350, 350);
+		     g.drawLine(75,75,75,425);
+		     g.drawLine(125,75,125,425);
+		     g.drawLine(175, 75, 175, 425);
+		     g.drawLine(225, 75, 225, 425);
+		     g.drawLine(275, 75, 275, 425);
+		     g.drawLine(325, 75, 325, 425);
+		     //Vertical lines
+		     g.drawLine(25, 125, 375, 125);
+		     g.drawLine(25, 175, 375, 175);
+		     g.drawLine(25, 225, 375, 225);
+		     g.drawLine(25, 275, 375, 275);
+		     g.drawLine(25, 325, 375, 325);
+		     g.drawLine(25, 375, 375, 375);
+		     //Horizontal Lines
+		     g.setColor(y.black);
+		     g.drawLine(375, 225, 375, 275);
+	   }
+	   public void MiddleRoom(Graphics g){
+		   Color y = null;
+		      g.fillRect (0, 0, 500, 500);
+		     g.setColor(y.green);
+		     g.drawRect(25, 75, 350, 350);
+		     g.drawLine(75,75,75,425);
+		     g.drawLine(125,75,125,425);
+		     g.drawLine(175, 75, 175, 425);
+		     g.drawLine(225, 75, 225, 425);
+		     g.drawLine(275, 75, 275, 425);
+		     g.drawLine(325, 75, 325, 425);
+		     //Vertical lines
+		     g.drawLine(25, 125, 375, 125);
+		     g.drawLine(25, 175, 375, 175);
+		     g.drawLine(25, 225, 375, 225);
+		     g.drawLine(25, 275, 375, 275);
+		     g.drawLine(25, 325, 375, 325);
+		     g.drawLine(25, 375, 375, 375);
+		     //Horizontal Lines
+		     g.setColor(y.black);
+		     g.drawLine(375, 225, 375, 275);
+		     g.drawLine(25, 225, 25, 275);
+		     g.drawLine(175, 75, 225, 75);
+	   }
+	   public void RightRoom(Graphics g){
+		   Color y = null;
+		      g.fillRect (0, 0, 500, 500);
+		     g.setColor(y.green);
+		     g.drawRect(25, 75, 350, 350);
+		     g.drawLine(75,75,75,425);
+		     g.drawLine(125,75,125,425);
+		     g.drawLine(175, 75, 175, 425);
+		     g.drawLine(225, 75, 225, 425);
+		     g.drawLine(275, 75, 275, 425);
+		     g.drawLine(325, 75, 325, 425);
+		     //Vertical lines
+		     g.drawLine(25, 125, 375, 125);
+		     g.drawLine(25, 175, 375, 175);
+		     g.drawLine(25, 225, 375, 225);
+		     g.drawLine(25, 275, 375, 275);
+		     g.drawLine(25, 325, 375, 325);
+		     g.drawLine(25, 375, 375, 375);
+		     //Horizontal Lines
+		     g.setColor(y.black);
+		     g.drawLine(25, 225, 25, 275);
+	   }
+	   public void TopRoom(Graphics g){
+		   Color y = null;
+		      g.fillRect (0, 0, 500, 500);
+		     g.setColor(y.green);
+		     g.drawRect(25, 75, 350, 350);
+		     g.drawLine(75,75,75,425);
+		     g.drawLine(125,75,125,425);
+		     g.drawLine(175, 75, 175, 425);
+		     g.drawLine(225, 75, 225, 425);
+		     g.drawLine(275, 75, 275, 425);
+		     g.drawLine(325, 75, 325, 425);
+		     //Vertical lines
+		     g.drawLine(25, 125, 375, 125);
+		     g.drawLine(25, 175, 375, 175);
+		     g.drawLine(25, 225, 375, 225);
+		     g.drawLine(25, 275, 375, 275);
+		     g.drawLine(25, 325, 375, 325);
+		     g.drawLine(25, 375, 375, 375);
+		     //Horizontal Lines
+		     g.setColor(y.black);
+		     g.drawLine(175, 425, 225, 425);   
+	   }
 }
